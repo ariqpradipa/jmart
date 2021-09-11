@@ -1,35 +1,99 @@
 package AriqJmartFA;
 
-
 /**
- * Write a description of class Jmart here.
+ * praktikum oop
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Ariq Pradipa Santoso
+ * @version 11/09/2021
  */
+
 public class Jmart
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    public static void main(String[] args) {
 
-    /**
-     * Constructor for objects of class Jmart
-     */
-    public Jmart()
-    {
-        // initialise instance variables
-        x = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public static int getPromo() {
+
+        return 0;
+
+    }
+
+    public static String getCustomer() {
+
+        return "oop";
+
+    }
+
+    public static float getDiscountPercentage(int before, float after) {
+
+        if(before < after) {
+
+            return 0f;
+
+        } else if(before == 0 && after == 0) {
+
+            return 0f;
+
+        } else if(before > after) {
+
+            if(100f - ((after/(float)before)*100) == 0) {
+
+                return 100f;
+
+            } else {
+
+                return 100f - ((after/(float)before)*100);
+
+            }
+        }
+    }
+
+    public static int getDiscountedPrice(int price, float discountPercentage) {
+
+        if(discountPercentage > 100) {
+
+            return 0;
+
+        } else if(discountPercentage == 0 && price == 0) {
+
+            return 0;
+
+        } else {
+
+            return (price - (price * (int)discountPercentage/100));
+
+        }
+    }
+
+    public static int getOriginalPrice(int discountPrice, float discountPercentage) {
+
+        if(discountPrice < discountPercentage) {
+
+            return 0;
+
+        } else {
+
+            return (100/(100-(int)discountPercentage)) * discountPrice;
+
+        }
+    }
+
+    public static float getCommissionMultiplier() {
+
+        return 0.05f;
+
+    }
+    
+    public static int getAdjustedPrice(int price) {
+
+        return price + (int)(price*0.05);
+
+    }
+
+    public static int getAdminFee(int price) {
+
+        return (int)(price*0.05);
+
     }
 }
