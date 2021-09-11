@@ -63,7 +63,7 @@ public class Jmart
 
         } else {
 
-            return (int)(price - ((float)price * discountPercentage/100));
+            return (int)((float)price - ((float)price * discountPercentage/100));
 
         }
     }
