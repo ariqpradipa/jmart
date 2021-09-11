@@ -35,7 +35,7 @@ public class Jmart
 
             return 0f;
 
-        } else if(before > after) {
+        } else{
 
             if(100f - ((after/(float)before)*100) == 0) {
 
@@ -61,7 +61,7 @@ public class Jmart
 
         } else {
 
-            return (price - (price * (int)discountPercentage/100));
+            return (int)(price - (price * discountPercentage/100));
 
         }
     }
