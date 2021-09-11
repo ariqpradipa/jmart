@@ -11,6 +11,8 @@ public class Jmart
 {
     public static void main(String[] args) {
 
+        System.out.println(getOriginalPrice(900, 10.0f));
+
     }
 
     public static int getPromo() {
@@ -61,7 +63,7 @@ public class Jmart
 
         } else {
 
-            return (int)(price - (price * discountPercentage/100));
+            return (int)(price - ((float)price * discountPercentage/100));
 
         }
     }
@@ -74,7 +76,7 @@ public class Jmart
 
         } else {
 
-            return (100/(100-(int)discountPercentage)) * discountPrice;
+            return (int)(discountPrice * (100/(100-discountPercentage)));
 
         }
     }
