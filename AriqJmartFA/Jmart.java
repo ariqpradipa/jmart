@@ -11,7 +11,6 @@ public class Jmart
 {
     public static void main(String[] args) {
 
-        System.out.println(getOriginalPrice(900, 10.0f));
 
     }
 
