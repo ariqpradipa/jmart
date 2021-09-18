@@ -1,12 +1,5 @@
 package AriqJmartFA;
 
-/**
- * Write a description of class PriceTag here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-
 public class PriceTag {
 
     public static final double COMMISSION_MULTIPLIER = 0.05;
@@ -46,7 +39,7 @@ public class PriceTag {
 
         }
     }
-    
+
     private double getDiscountedPrice() {
 
         if(this.discount >= 100) {
