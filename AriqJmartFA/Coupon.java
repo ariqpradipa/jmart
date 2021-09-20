@@ -45,7 +45,7 @@ public class Coupon {
 
         if(this.type == Type.DISCOUNT) {
 
-            return priceTag.getAdjustedPrice() - (priceTag.getAdjustedPrice() * cut);
+            return priceTag.getAdjustedPrice() - (priceTag.getAdjustedPrice() * (cut/100)); // skala discount 1-100
 
         } else {
 
