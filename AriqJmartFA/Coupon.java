@@ -43,6 +43,14 @@ public class Coupon {
 
         this.used = true;
 
-        return getAdjustedPrice()
+        if(this.type == Type.DISCOUNT) {
+
+            return priceTag.getAdjustedPrice() - (priceTag.getAdjustedPrice() * cut);
+
+        } else {
+
+            return priceTag.getAdjustedPrice() - cut;
+
+        }
     }
 }
