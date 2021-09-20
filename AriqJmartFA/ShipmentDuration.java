@@ -8,8 +8,8 @@ public class ShipmentDuration {
     public static ShipmentDuration NEXT_DAY;
     public static ShipmentDuration REGULER;
     public static ShipmentDuration KARGO;
-    private final int bit;
-
+    //private final int bit;
+    /*
     private ShipmentDuration(int bit) {
 
         this.bit = bit;
@@ -27,7 +27,8 @@ public class ShipmentDuration {
 
     public boolean isDuration(ShipmentDuration reference) {
 
-        
+
 
     }
+    */
 }
