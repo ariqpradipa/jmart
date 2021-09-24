@@ -47,14 +47,14 @@ public class ShipmentDuration {
             }
         }
     }
-
+    /*
     public boolean isDuration(ShipmentDuration reference) {
 
-        System.out.println("halo");
-        return true;
+        Integer.toBinaryString(this.bit);
         
-        
+        ShipmentDuration.INSTANT = true;
 
     } 
+    */
     
 }
