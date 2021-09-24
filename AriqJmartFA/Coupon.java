@@ -2,11 +2,11 @@ package AriqJmartFA;
 
 public class Coupon {
 
-    public String name;
-    public int code;
-    public double cut;
-    public Type type;
-    public double minimum;
+    public final String name;
+    public final int code;
+    public final double cut;
+    public final Type type;
+    public final double minimum;
     private boolean used;
 
     public Coupon(String name, int code, Type type, double cut, double minimum) {
