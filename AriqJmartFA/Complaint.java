@@ -2,29 +2,44 @@ package AriqJmartFA;
 
 
 
-public class Complaint
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public class Complaint extends Recognizeable implements FileParser {
 
-    /**
-     * Constructor for objects of class Complaint
-     */
-    public Complaint()
-    {
-        // initialise instance variables
-        x = 0;
+    public int paymentId;
+    public String desc;
+    /*
+    public Complaint(int id, Payment payment, String desc) {
+
+        super(id);
+        this.paymentId = payment.id;
+        this.desc = desc;
+    
+    }
+    */
+    
+    public Complaint(int id, int buyerId, int scoreId, int paymentId, String desc) {
+
+        super(id);
+        //super(buyerId);
+        
+        this.paymentId = paymentId;
+        this.desc = desc;
+
+
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public boolean validate() {
+
+        return false;
+    }
+    
+    public Transaction perform() {
+
+        return null;
+
+    }
+
+    public boolean read(String content) {
+
+        return false;
     }
 }

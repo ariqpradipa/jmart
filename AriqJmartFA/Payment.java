@@ -1,35 +1,31 @@
 package AriqJmartFA;
 
+/*
 
-/**
- * Write a description of class Payment here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Payment
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public class Payment extends Transaction implements FileParser {
+    
+    public int productId;
+    public ShipmentDuration shipmentDuration;
+    
+    public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration) {
+        
+        super(id, buyerId, product, shipmentDuration);
+        this.productId = product.id;
+        
 
-    /**
-     * Constructor for objects of class Payment
-     */
-    public Payment()
-    {
-        // initialise instance variables
-        x = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration) {
+
+        super(id, buyerId, storeId, shipmentDuration);
+        this.productId = productId;
+
+
     }
+
+
+    
+
+    
 }
+*/

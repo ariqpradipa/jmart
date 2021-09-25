@@ -1,6 +1,6 @@
 package AriqJmartFA;
-
-public class Coupon extends Recognizeable{
+/*
+public class Coupon extends Recognizeable implements FileParser{
 
     public final String name;
     public final int code;
@@ -8,7 +8,7 @@ public class Coupon extends Recognizeable{
     public final Type type;
     public final double minimum;
     private boolean used;
-
+    
     public Coupon(String name, int code, Type type, double cut, double minimum) {
 
         this.name = name;
@@ -54,3 +54,4 @@ public class Coupon extends Recognizeable{
         }
     }
 }
+*/

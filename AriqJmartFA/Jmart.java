@@ -14,6 +14,7 @@ public class Jmart
 
     }
 
+    /*
     public static Product createProduct() {
 
         PriceTag bookprice = new PriceTag(30000, 20);
@@ -31,4 +32,5 @@ public class Jmart
         return null;
 
     }
+    */
 }
