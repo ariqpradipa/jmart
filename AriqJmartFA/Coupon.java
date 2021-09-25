@@ -1,6 +1,6 @@
 package AriqJmartFA;
 
-public class Coupon {
+public class Coupon extends Recognizeable{
 
     public final String name;
     public final int code;

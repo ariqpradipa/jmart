@@ -1,19 +1,23 @@
 package AriqJmartFA;
 
 
-/**
- * Write a description of interface FileParser here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public interface FileParser
-{
-    /**
-     * An example of a method header - replace this comment with your own
-     *
-     * @param  y a sample parameter for a method
-     * @return   the result produced by sampleMethod
-     */
-    int sampleMethod(int y);
+public interface FileParser {
+    
+    public default boolean read(String content) {
+
+        return false;
+
+    }
+
+    public default Object write() {
+
+        return null;
+
+    }
+
+    public static Object newInstance(String content) {
+
+        return null;
+
+    }
 }
