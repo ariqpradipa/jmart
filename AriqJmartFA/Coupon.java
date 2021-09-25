@@ -1,5 +1,5 @@
 package AriqJmartFA;
-/*
+
 public class Coupon extends Recognizeable implements FileParser{
 
     public final String name;
@@ -9,8 +9,9 @@ public class Coupon extends Recognizeable implements FileParser{
     public final double minimum;
     private boolean used;
     
-    public Coupon(String name, int code, Type type, double cut, double minimum) {
+    public Coupon(int id, String name, int code, Type type, double cut, double minimum) {
 
+        super(id);
         this.name = name;
         this.code = code;
         this.cut = cut;
@@ -53,5 +54,11 @@ public class Coupon extends Recognizeable implements FileParser{
 
         }
     }
+
+    @Override
+    public boolean read(String content) {
+       
+        return false;
+        
+    }
 }
-*/
