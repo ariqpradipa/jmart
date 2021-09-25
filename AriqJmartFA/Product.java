@@ -25,7 +25,7 @@ public class Product extends Recognizeable implements FileParser {
     public Product(int id, Store store, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category) {
 
         super(id);
-        super(store);
+        this.storeId = store.id;
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;
