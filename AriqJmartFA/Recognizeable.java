@@ -1,6 +1,6 @@
 package AriqJmartFA;
 
-public class Recognizeable {
+public abstract class Recognizeable {
 
     public final int id;
 

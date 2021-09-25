@@ -1,26 +1,22 @@
 package AriqJmartFA;
 
-
-
-public class Complaint extends Recognizeable implements FileParser {
+public class Complaint extends Transaction implements FileParser {
 
     public int paymentId;
     public String desc;
-    /*
+    
     public Complaint(int id, Payment payment, String desc) {
 
-        super(id);
+        super(id, null, null);
         this.paymentId = payment.id;
         this.desc = desc;
     
     }
-    */
     
-    public Complaint(int id, int buyerId, int scoreId, int paymentId, String desc) {
+    
+    public Complaint(int id, int buyerId, int storeId, int paymentId, String desc) {
 
-        super(id);
-        //super(buyerId);
-        
+        super(id, buyerId, storeId);
         this.paymentId = paymentId;
         this.desc = desc;
 
@@ -38,6 +34,7 @@ public class Complaint extends Recognizeable implements FileParser {
 
     }
 
+    @Override
     public boolean read(String content) {
 
         return false;

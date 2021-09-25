@@ -36,6 +36,5 @@ public abstract class Transaction extends Recognizeable {
     public abstract boolean validate();
     
     public abstract Transaction perform();
-
    
 }
