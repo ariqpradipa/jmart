@@ -1,35 +1,34 @@
 package AriqJmartFA;
 
 
-/**
- * Write a description of class Store here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Store
-{
-    // instance variables - replace the example below with your own
-    private int x;
 
-    /**
-     * Constructor for objects of class Store
-     */
-    public Store()
-    {
-        // initialise instance variables
-        x = 0;
+public class Store extends Recognizeable implements FileParser{
+
+    public String name;
+    public String address;
+    public String phoneNumber;
+
+    public Store(int accountId, String name, String address, String phoneNumber) {
+
+        super(accountId);
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public Store(Account account, String name, String address, String phoneNumber) {
+
+        super(account.id);
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        
+    }
+
+    @Override
+    public boolean read(String content) {
+        
+        return false;
     }
 }

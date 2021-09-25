@@ -1,7 +1,7 @@
 package AriqJmartFA;
 
 
-public class Product extends Recognizeable {
+public class Product extends Recognizeable implements FileParser {
 
     public String name;
     public int weight;
@@ -25,6 +25,7 @@ public class Product extends Recognizeable {
     public Product(int id, Store store, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category) {
 
         super(id);
+        super(store);
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;
@@ -32,8 +33,10 @@ public class Product extends Recognizeable {
         this.category = category;
     }
     
-    public boolean read(String ) {
-        
+    public boolean read(String content) {
+
+        return false;
+
     }
 
 

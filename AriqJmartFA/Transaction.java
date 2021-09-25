@@ -1,13 +1,7 @@
 package AriqJmartFA;
 
 
-/**
- * Write a description of class Transaction here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Transaction
+public class Transaction extends Recognizeable
 {
     // instance variables - replace the example below with your own
     private int x;

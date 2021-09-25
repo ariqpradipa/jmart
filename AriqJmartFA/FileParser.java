@@ -3,11 +3,7 @@ package AriqJmartFA;
 
 public interface FileParser {
     
-    public default boolean read(String content) {
-
-        return false;
-
-    }
+    public boolean read(String content);
 
     public default Object write() {
 
