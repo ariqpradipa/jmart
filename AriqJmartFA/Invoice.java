@@ -17,6 +17,7 @@ public class Invoice extends Recognizeable implements FileParser {
         this.buyerId = buyerId;
         this.productId = productId;
         this.date = "Date";
+        this.complaintId = -1;
         this.rating = Rating.NONE;
         this.status = Status.WAITING_CONFIRMATION;
 
@@ -28,7 +29,11 @@ public class Invoice extends Recognizeable implements FileParser {
 
     }
 
-    // public double getTotalPay();
+    public double getTotalPay() {
+
+        return 0;
+        
+    }
 
     public enum Status{
 

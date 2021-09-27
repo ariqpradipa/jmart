@@ -9,7 +9,7 @@ public class Complaint extends Recognizeable implements FileParser {
     public Complaint(int id, String desc) {
 
         super(id);
-        this.date = "Date: ";
+        this.date = "Date";
         this.desc = desc;
 
 
