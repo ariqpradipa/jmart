@@ -11,10 +11,10 @@ public class Product extends Recognizeable implements FileParser {
     public PriceTag priceTag;
     public ProductCategory category;
     public Rating rating;
-    //public MultiDuration multiDuration;
+    public Shipment.MultiDuration multiDuration;
    
 
-    public Product(int id, int storeId, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category) {
+    public Product(int id, int storeId, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category, Shipment.MultiDuration multiDuration) {
 
         super(id);
         this.storeId = storeId;
@@ -23,7 +23,8 @@ public class Product extends Recognizeable implements FileParser {
         this.conditionUsed = conditionUsed;
         this.priceTag = priceTag;
         this.category = category;
-
+        this.multiDuration = multiDuration;
+        
     }
     
     public boolean read(String content) {

@@ -42,14 +42,13 @@ public class Shipment implements FileParser {
         }
     }
 
-    /*
     public class MultiDuration {
 
-        public byte bit;
+        public final byte bit;
 
-        public MultiDuration(MultiDuration ... args) {
+        public MultiDuration(Duration ... args) {
     
-            for(MultiDuration i: args) {
+            for(Duration i: args) {
     
                 if(i == INSTANT) {
     
@@ -88,6 +87,6 @@ public class Shipment implements FileParser {
         } 
 
     }
-    */
+    
     
 }
