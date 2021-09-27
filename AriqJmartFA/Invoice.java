@@ -14,9 +14,9 @@ public class Invoice extends Recognizeable implements FileParser {
     protected Invoice(int id, int buyerId, int productId) {
 
         super(id);
-        this.date = "Date";
         this.buyerId = buyerId;
         this.productId = productId;
+        this.date = "Date";
         this.rating = Rating.NONE;
         this.status = Status.WAITING_CONFIRMATION;
 

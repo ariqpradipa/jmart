@@ -1,26 +1,25 @@
 package AriqJmartFA;
 
-public class Payment extends Transaction implements FileParser {
+public class Payment extends Invoice implements Transactor {
     
-    public int productId;
-    public ShipmentDuration shipmentDuration;
+   
+    public Shipment shipment;
+    public int productCount;
     
-    public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration) {
+    public Payment(int id, int buyerId, Product productId, int productCount, Shipment shipment) {
         
-        super(id, buyerId, product.id);
-        this.productId = product.id;
-        this.shipmentDuration = shipmentDuration;
+        super(id, buyerId, productId);
+        this.productCount = productCount;
+        this.shipment = shipment;
         
 
     }
 
-    public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration) {
+    public double getTotalPay() {
 
-        super(id, buyerId, storeId);
-        this.productId = productId;
-        this.shipmentDuration = shipmentDuration;
-
+        return 0;
     }
+
 
     public boolean validate() {
 
@@ -28,16 +27,9 @@ public class Payment extends Transaction implements FileParser {
 
     }
 
-    public Transaction perform() {
+    public Invoice perform() {
 
         return null;
 
-    }
-
-    @Override
-    public boolean read(String content) {
-
-        return false;
-
-    }   
+    } 
 }

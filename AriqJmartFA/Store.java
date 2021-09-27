@@ -26,6 +26,12 @@ public class Store extends Recognizeable implements FileParser{
         
     }
 
+    public String toString() {
+
+        return "name: PT Madju Merdeka\naddress: Jl. Kukusan]nphoneNumber: 628777xxxx";
+
+    }
+    
     @Override
     public boolean read(String content) {
         

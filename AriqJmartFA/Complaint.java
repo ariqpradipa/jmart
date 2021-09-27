@@ -1,6 +1,6 @@
 package AriqJmartFA;
 
-public class Complaint extends Transaction implements FileParser {
+public class Complaint extends Recognizeable implements FileParser {
 
     //public int paymentId;
     public String date;
@@ -8,7 +8,7 @@ public class Complaint extends Transaction implements FileParser {
     
     public Complaint(int id, String desc) {
 
-        super(id, desc, this.Date);
+        super(id);
         this.date = "Date: ";
         this.desc = desc;
 

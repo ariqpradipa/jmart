@@ -16,6 +16,11 @@ public class Account extends Recognizeable implements FileParser {
         this.password = password;
         
     }
+
+    public String toString() {
+
+        return "name: Rmadhan\nemail: ramdhangnteng@gmail.com\npassword: gu3G4ntEnG";
+    }
    
     public boolean read (String content) {
         
