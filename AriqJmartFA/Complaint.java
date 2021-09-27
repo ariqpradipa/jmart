@@ -2,9 +2,24 @@ package AriqJmartFA;
 
 public class Complaint extends Transaction implements FileParser {
 
-    public int paymentId;
+    //public int paymentId;
+    public String date;
     public String desc;
     
+    public Complaint(int id, String desc) {
+
+        super(id, desc, this.Date);
+        this.date = "Date: ";
+        this.desc = desc;
+
+
+    }
+    @Override
+    public boolean read(String content) {
+
+        return false;
+    }
+    /*
     public Complaint(int id, Payment payment, String desc) {
 
         super(id, null, null);
@@ -33,10 +48,5 @@ public class Complaint extends Transaction implements FileParser {
         return null;
 
     }
-
-    @Override
-    public boolean read(String content) {
-
-        return false;
-    }
+    */
 }

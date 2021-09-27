@@ -21,7 +21,6 @@ public abstract class Transaction extends Recognizeable {
         this.storeId = storeId;
         this.time = "Time";
         this.rating = Rating.NONE;
-    
 
     }
     
