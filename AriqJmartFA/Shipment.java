@@ -42,12 +42,14 @@ public class Shipment implements FileParser {
         }
     }
 
-    /*
+    
     public class MultiDuration {
 
-        public final byte bit;
+        public final byte bit = 1;
 
+        /*
         public MultiDuration(Duration ... args) {
+            
     
             for(Duration i: args) {
     
@@ -77,8 +79,10 @@ public class Shipment implements FileParser {
     
                 }
             }
-        }
+            
+        }*/
         
+        /*
         public boolean isDuration(ShipmentDuration reference) {
     
             Integer.toBinaryString(this.bit);
@@ -86,8 +90,9 @@ public class Shipment implements FileParser {
             ShipmentDuration.INSTANT = true;
     
         } 
+        */
 
     }
-    */
+    
     
 }
