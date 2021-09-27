@@ -42,6 +42,7 @@ public class Shipment implements FileParser {
         }
     }
 
+    /*
     public class MultiDuration {
 
         public final byte bit;
@@ -87,6 +88,6 @@ public class Shipment implements FileParser {
         } 
 
     }
-    
+    */
     
 }
