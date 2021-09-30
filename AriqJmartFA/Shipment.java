@@ -28,11 +28,11 @@ public class Shipment implements FileParser {
     public static class Duration {
         
         
-        public static Duration INSTANT = new Duration((byte)(1<<0));
-        public static Duration SAME_DAY = new Duration((byte)(1<<1));
-        public static Duration NEXT_DAY = new Duration((byte)(1<<2));
-        public static Duration REGULER = new Duration((byte)(1<<3));
-        public static Duration KARGO = new Duration((byte)(1<<4));
+        public static Duration INSTANT = new Duration((byte)(0b00000001));
+        public static Duration SAME_DAY = new Duration((byte)(0b00000010));
+        public static Duration NEXT_DAY = new Duration((byte)(0b00000100));
+        public static Duration REGULER = new Duration((byte)(0b00001000));
+        public static Duration KARGO = new Duration((byte)(0b00010000));
         private byte bit;
         
         private Duration(byte bit) {
@@ -45,54 +45,28 @@ public class Shipment implements FileParser {
     
     public class MultiDuration {
 
-        public final byte bit = 1;
+        public byte bit;
 
-        /*
-        public MultiDuration(Duration ... args) {
-            
-    
-            for(Duration i: args) {
-    
-                if(i == INSTANT) {
-    
-                    this.bit = this.bit | 1;
-    
-                }
-                if(i == SAME_DAY) {
-    
-                    this.bit = this.bit | 2;
-    
-                }
-                if(i == NEXT_DAY) {
-    
-                    this.bit = this.bit | 4;
-    
-                }
-                if(i == REGULER) {
-    
-                    this.bit = this.bit | 8;
-    
-                }
-                if(i == KARGO) {
-    
-                    this.bit = this.bit | 16;
-    
-                }
-            }
-            
-        }*/
         
-        /*
-        public boolean isDuration(ShipmentDuration reference) {
+        public MultiDuration(Duration ... args) {
+
+            byte flags = 0;
+
+            for(int i = 0; i < args.length; i++) {
+
+                flags |= args[i].bit;
+
+            }
+
+            bit = flags;
+              
+        }
+        
+        
+        public boolean isDuration(Duration reference) {
     
-            Integer.toBinaryString(this.bit);
-            
-            ShipmentDuration.INSTANT = true;
+            return (bit & reference.bit) != 0;
     
         } 
-        */
-
     }
-    
-    
 }

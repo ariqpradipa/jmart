@@ -7,8 +7,8 @@ package AriqJmartFA;
  * @version 11/09/2021
  */
 
-public class Jmart
-{
+public class Jmart {
+    
     public static void main(String[] args) {
         
 
