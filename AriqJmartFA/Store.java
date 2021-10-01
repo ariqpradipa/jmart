@@ -1,7 +1,5 @@
 package AriqJmartFA;
 
-
-
 public class Store extends Recognizable implements FileParser{
 
     public String name;
@@ -47,5 +45,6 @@ public class Store extends Recognizable implements FileParser{
     public boolean read(String content) {
         
         return false;
+        
     }
 }

@@ -51,6 +51,7 @@ public class Product extends Recognizable implements FileParser {
 
         String str = strbld.toString();
         return str;
+        
         // return "Name: Harry Potter\nWeight: 1\nconditionUsed: false\npriceTag: 21000.0\ncategory: BOOK\nrating: 0\nstoreId: 1";
 
     }

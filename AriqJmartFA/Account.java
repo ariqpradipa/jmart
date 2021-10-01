@@ -1,7 +1,5 @@
 package AriqJmartFA;
 
-
-
 public class Account extends Recognizable implements FileParser {
 
     public String name;

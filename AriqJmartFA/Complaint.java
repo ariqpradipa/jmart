@@ -14,6 +14,7 @@ public class Complaint extends Recognizable implements FileParser {
 
 
     }
+    
     @Override
     public boolean read(String content) {
 

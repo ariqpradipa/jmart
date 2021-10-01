@@ -18,16 +18,17 @@ public class Payment extends Invoice implements Transactor {
     public double getTotalPay() {
 
         return 0;
-        
+
     }
 
-
+    @Override
     public boolean validate() {
 
         return false;
 
     }
 
+    @Override
     public Invoice perform() {
 
         return null;

@@ -1,7 +1,5 @@
 package AriqJmartFA;
 
-
-
 public class Invoice extends Recognizable implements FileParser {
 
     public String date;
@@ -47,7 +45,4 @@ public class Invoice extends Recognizable implements FileParser {
         NONE, BAD, NEUTRAL, GOOD
 
     }
-
-
- 
 }

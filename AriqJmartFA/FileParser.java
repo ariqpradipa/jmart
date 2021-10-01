@@ -1,6 +1,5 @@
 package AriqJmartFA;
 
-
 public interface FileParser {
     
     public boolean read(String content);
