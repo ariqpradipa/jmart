@@ -1,6 +1,6 @@
 package AriqJmartFA;
 
-public class Coupon extends Recognizeable implements FileParser{
+public class Coupon extends Recognizable implements FileParser{
 
     public final String name;
     public final int code;

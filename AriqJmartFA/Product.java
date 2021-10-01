@@ -1,8 +1,6 @@
 package AriqJmartFA;
 
-import AriqJmartFA.Invoice.Rating;
-
-public class Product extends Recognizeable implements FileParser {
+public class Product extends Recognizable implements FileParser {
     
     public int storeId;
     public String name;
@@ -10,7 +8,7 @@ public class Product extends Recognizeable implements FileParser {
     public boolean conditionUsed;
     public PriceTag priceTag;
     public ProductCategory category;
-    public Rating rating;
+    public ProductRating rating;
     public Shipment.MultiDuration multiDuration;
    
 
@@ -35,19 +33,25 @@ public class Product extends Recognizeable implements FileParser {
 
     public String toString() {
 
-        /*
-        this.name = "Harry Potter";
-        this.weight = 1;
-        this.conditionUsed = false;
-        this.priceTag.price = 21000.0;
-        this.category = ProductCategory.BOOK;
-        this.rating = Rating.NONE;
-        this.storeId = 1;
-        */
+        String nama = "Name: " + this.name;
+        String berat = "\nWeight " + this.weight;
+        String kondisi = "\nCondition: " + this.conditionUsed;
+        String harga = "\nPriceTag: " + this.priceTag.price;
+        String kategori = "\nCategory: " + this.category;
+        String nilai = "\nRating: " + this.rating;
+        String sid = "\nstoreId: " + this.storeId;
 
-        return "Name: Harry Potter\nWeight: 1\nconditionUsed: false\npriceTag: 21000.0\ncategory: BOOK\nrating: 0\nstoreId: 1";
+        StringBuilder strbld = new StringBuilder(nama)
+        .append(berat)
+        .append(kondisi)
+        .append(harga)
+        .append(kategori)
+        .append(nilai)
+        .append(sid);
+
+        String str = strbld.toString();
+        return str;
+        // return "Name: Harry Potter\nWeight: 1\nconditionUsed: false\npriceTag: 21000.0\ncategory: BOOK\nrating: 0\nstoreId: 1";
 
     }
-
-
 }

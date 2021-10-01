@@ -1,10 +1,10 @@
 package AriqJmartFA;
 
-public abstract class Recognizeable {
+public abstract class Recognizable {
 
     public final int id;
 
-    protected Recognizeable(int id) {
+    protected Recognizable(int id) {
 
         this.id = id;
 
@@ -12,7 +12,7 @@ public abstract class Recognizeable {
 
     public boolean equals(Object object) {
 
-        if(object instanceof Recognizeable && ((Recognizeable)object).id == this.id) {
+        if(object instanceof Recognizable && ((Recognizable)object).id == this.id) {
 
             return true;
 
@@ -23,7 +23,7 @@ public abstract class Recognizeable {
         }
     }
     
-    public boolean equals(Recognizeable recog) {
+    public boolean equals(Recognizable recog) {
 
         return (recog.id == this.id);
 

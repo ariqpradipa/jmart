@@ -2,7 +2,7 @@ package AriqJmartFA;
 
 
 
-public class Invoice extends Recognizeable implements FileParser {
+public class Invoice extends Recognizable implements FileParser {
 
     public String date;
     public int buyerId;

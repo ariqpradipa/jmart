@@ -2,7 +2,7 @@ package AriqJmartFA;
 
 
 
-public class Store extends Recognizeable implements FileParser{
+public class Store extends Recognizable implements FileParser{
 
     public String name;
     public String address;
@@ -28,7 +28,18 @@ public class Store extends Recognizeable implements FileParser{
 
     public String toString() {
 
-        return "name: PT Madju Merdeka\naddress: Jl. Kukusan]nphoneNumber: 628777xxxx";
+        String nama = "Name: " + this.name;
+        String jalan = "Address: " + this.address;
+        String notelp = "PhoneNumber: " + this.phoneNumber;
+
+        StringBuilder strbld = new StringBuilder(nama)
+        .append(jalan)
+        .append(notelp);
+
+        String str = strbld.toString();
+        return str;
+
+        // return "name: PT Madju Merdeka\naddress: Jl. Kukusan]nphoneNumber: 628777xxxx";
 
     }
     

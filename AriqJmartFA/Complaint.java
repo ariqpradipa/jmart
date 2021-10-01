@@ -1,6 +1,6 @@
 package AriqJmartFA;
 
-public class Complaint extends Recognizeable implements FileParser {
+public class Complaint extends Recognizable implements FileParser {
 
     //public int paymentId;
     public String date;

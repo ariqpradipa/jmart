@@ -18,6 +18,7 @@ public class Payment extends Invoice implements Transactor {
     public double getTotalPay() {
 
         return 0;
+        
     }
 
 
