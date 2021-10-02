@@ -12,16 +12,24 @@ public class Filter {
 
             if(less == true) {
 
-                temp.add(list[i]);
-    
+                if(list[i].getAdjustedPrice() < value) {
+
+                    temp.add(list[i]);
+
+                }
             }
             else if(less = false) {
 
+                if(list[i].getAdjustedPrice() >= value) {
+
+                    temp.add(list[i]);
+
+                }
             }
         }
         
-
         return temp;
+
     }
 
     public void filterProductRating(ArrayList<ProductRating> list, double value, boolean less) {
