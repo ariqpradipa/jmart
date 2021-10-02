@@ -17,9 +17,9 @@ public class Account extends Recognizable implements FileParser {
 
     public String toString() {
 
-        String nama = "name: " + this.name;
-        String em = "\nemail: " + this.email;
-        String pass = "\npass: " + this.password;
+        String nama = "Name: " + this.name;
+        String em = "\nEmail: " + this.email;
+        String pass = "\nPass: " + this.password;
 
         StringBuilder strbld = new StringBuilder(nama).append(em).append(pass);
         String str = strbld.toString();

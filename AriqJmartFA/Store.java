@@ -1,7 +1,12 @@
 package AriqJmartFA;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Store extends Recognizable implements FileParser{
 
+    public static String REGEX_PHONE;
+    public static String REGEX_NAME;
     public String name;
     public String address;
     public String phoneNumber;
@@ -47,4 +52,12 @@ public class Store extends Recognizable implements FileParser{
         return false;
         
     }
+
+    /*
+    public boolean validate() {
+
+        Pattern 
+        return true if matcher.find
+    }
+    */
 }
