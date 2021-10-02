@@ -2,6 +2,7 @@ package AriqJmartFA;
 
 import java.util.ArrayList;
 
+// filter things
 public class Filter {
     
     public ArrayList<PriceTag> filterPriceTag(PriceTag[] list, double value, boolean less) {
