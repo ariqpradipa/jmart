@@ -40,7 +40,6 @@ public class Filter {
             if(less == true) {
                 //if( < value) {}
             }
-
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Store extends Recognizable implements FileParser{
 
-    public static String REGEX_PHONE;
+    public static String REGEX_PHONE = "\\(?(?:\\+62|62|0)(?:\\d{2,3})?\\)?[ .-]?\\d{8,8}";
     public static String REGEX_NAME;
     public String name;
     public String address;
@@ -53,11 +53,14 @@ public class Store extends Recognizable implements FileParser{
         
     }
 
-    /*
     public boolean validate() {
 
-        Pattern 
-        return true if matcher.find
+        Pattern patternPhone = Pattern.compile(REGEX_PHONE);
+        Matcher matcherPhone = patternPhone.matcher(this.phoneNumber);
+
+        Pattern patternName;
+
+        return matcherPhone.find();
+
     }
-    */
 }

@@ -50,7 +50,7 @@ public class Shipment implements FileParser {
             cal.setTime(reference);
             String strDate;
 
-            if(bit == 0b00000001 && bit == 0b00000010) {
+            if(bit == 0b00000001 || bit == 0b00000010) {
 
                 strDate = ESTIMATION_FORMAT.format(cal.getTime());
                 return strDate;
@@ -66,14 +66,14 @@ public class Shipment implements FileParser {
 
                 cal.add(Calendar.DATE, 2);
                 strDate = ESTIMATION_FORMAT.format(cal.getTime());
-                return (cal.getTime().toString());
+                return strDate;
                 
             }
             else if(bit == 0b00010000) {
 
                 cal.add(Calendar.DATE, 3);
                 strDate = ESTIMATION_FORMAT.format(cal.getTime());
-                return (cal.getTime().toString());
+                return strDate;
 
             }
             else {
