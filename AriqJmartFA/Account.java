@@ -1,7 +1,12 @@
 package AriqJmartFA;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Account extends Recognizable implements FileParser {
 
+    public String REGEX_EMAIL = "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+";
+    public String REGEX_PASSWORD =" ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$ ";
     public String name;
     public String email;
     public String password;
