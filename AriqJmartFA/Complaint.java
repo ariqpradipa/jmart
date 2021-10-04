@@ -17,6 +17,12 @@ public class Complaint extends Recognizable implements FileParser {
 
 
     }
+
+    public String toString() {
+        this.desc = "pengiriman tidak cepat, kurir tersesat";
+        return desc;
+        
+    }
     
     @Override
     public boolean read(String content) {

@@ -1,5 +1,7 @@
 package AriqJmartFA;
 
+import java.util.Date;
+
 public class Invoice extends Recognizable implements FileParser {
 
     public String date;
@@ -31,6 +33,14 @@ public class Invoice extends Recognizable implements FileParser {
 
         return 0;
         
+    }
+
+    public class Record {
+
+        public Status status;
+        public Date date;
+        public String message;
+
     }
 
     public enum Status{
