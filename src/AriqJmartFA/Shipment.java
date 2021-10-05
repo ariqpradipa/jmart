@@ -93,9 +93,9 @@ public class Shipment implements FileParser {
 
             byte flags = 0;
 
-            for(int i = 0; i < args.length; i++) {
+            for (Duration arg : args) {
 
-                flags |= args[i].bit;
+                flags |= arg.bit;
 
             }
 

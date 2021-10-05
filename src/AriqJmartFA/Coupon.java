@@ -30,14 +30,7 @@ public class Coupon extends Recognizable implements FileParser{
 
     public boolean canApply(PriceTag priceTag) {
 
-        if(priceTag.getAdjustedPrice() >= this.minimum && this.used == false) {
-
-            return true;
-
-        }  else {
-
-            return false;
-        }
+        return (priceTag.getAdjustedPrice() >= this.minimum && !this.used);
     }
 
     public double apply(PriceTag priceTag) {

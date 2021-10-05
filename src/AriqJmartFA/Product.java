@@ -41,16 +41,7 @@ public class Product extends Recognizable implements FileParser {
         String nilai = "\nRating: " + this.rating;
         String sid = "\nstoreId: " + this.storeId;
 
-        StringBuilder strbld = new StringBuilder(nama)
-        .append(berat)
-        .append(kondisi)
-        .append(harga)
-        .append(kategori)
-        .append(nilai)
-        .append(sid);
-
-        String str = strbld.toString();
-        return str;
+        return (nama + berat + kondisi + harga + kategori + nilai + sid);
         
         // return "Name: Harry Potter\nWeight: 1\nconditionUsed: false\npriceTag: 21000.0\ncategory: BOOK\nrating: 0\nstoreId: 1";
 

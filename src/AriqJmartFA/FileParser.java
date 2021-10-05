@@ -2,7 +2,7 @@ package AriqJmartFA;
 
 public interface FileParser {
     
-    public boolean read(String content);
+    boolean read(String content);
 
     default Object write() {
 
@@ -10,7 +10,7 @@ public interface FileParser {
 
     }
 
-    public static Object newInstance(String content) {
+    static Object newInstance(String content) {
 
         return null;
 

@@ -2,7 +2,6 @@ package AriqJmartFA;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class Complaint extends Recognizable implements FileParser {
 

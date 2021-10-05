@@ -9,21 +9,20 @@ public class Filter {
 
         ArrayList<PriceTag> temp = new ArrayList<PriceTag>();
 
-        for(int i=0; i<list.length; i++) {
+        for (PriceTag priceTag : list) {
 
-            if(less == true) {
+            if (less) {
 
-                if(list[i].getAdjustedPrice() < value) {
+                if (priceTag.getAdjustedPrice() < value) {
 
-                    temp.add(list[i]);
+                    temp.add(priceTag);
 
                 }
-            }
-            else if(less = false) {
+            } else {
 
-                if(list[i].getAdjustedPrice() >= value) {
+                if (priceTag.getAdjustedPrice() >= value) {
 
-                    temp.add(list[i]);
+                    temp.add(priceTag);
 
                 }
             }
@@ -37,14 +36,14 @@ public class Filter {
 
         for(int i=0; i<list.size(); i++) {
 
-            if(less == true) {
+            if(less) {
                 if(list.get(i).getAverage() < value) {
 
                     list.remove(i);
 
                 }
             }
-            else if(less == false) {
+            else {
                 if(list.get(i).getAverage() >= value) {
 
                     list.remove(i);

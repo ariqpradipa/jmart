@@ -2,8 +2,8 @@ package AriqJmartFA;
 
 public interface Transactor {
 
-    public boolean validate();
+    boolean validate();
 
-    public Invoice perform();
+    Invoice perform();
 
 }

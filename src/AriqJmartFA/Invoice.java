@@ -1,5 +1,6 @@
 package AriqJmartFA;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Invoice extends Recognizable implements FileParser {
@@ -40,6 +41,7 @@ public class Invoice extends Recognizable implements FileParser {
         public Status status;
         public Date date;
         public String message;
+        public ArrayList<Record> history;
 
     }
 
