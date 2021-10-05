@@ -38,7 +38,18 @@ public class Filter {
         for(int i=0; i<list.size(); i++) {
 
             if(less == true) {
-                //if( < value) {}
+                if(list.get(i).getAverage() < value) {
+
+                    list.remove(i);
+
+                }
+            }
+            else if(less == false) {
+                if(list.get(i).getAverage() >= value) {
+
+                    list.remove(i);
+
+                }
             }
         }
     }

@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 
 public class Store extends Recognizable implements FileParser{
 
-    public static String REGEX_PHONE = "\\(?(?:\\+62|62|0)[ .-]?\\d{8,11}";
-    public static String REGEX_NAME = "(?=^.{4,20}$)^[A-Z]([A-Za-z][\\s]?)+$";
+    public static final String REGEX_PHONE = "\\(?(?:\\+62|62|0)[ .-]?\\d{8,11}";
+    public static final String REGEX_NAME = "(?=^.{4,20}$)^[A-Z]([A-Za-z][\\s]?)+$";
     public String name;
     public String address;
     public String phoneNumber;
