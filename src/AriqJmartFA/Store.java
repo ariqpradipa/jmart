@@ -32,15 +32,10 @@ public class Store extends Recognizable implements FileParser{
     public String toString() {
 
         String nama = "Name: " + this.name;
-        String jalan = "Address: " + this.address;
-        String notelp = "PhoneNumber: " + this.phoneNumber;
+        String jalan = "\nAddress: " + this.address;
+        String notelp = "\nPhoneNumber: " + this.phoneNumber;
 
-        StringBuilder strbld = new StringBuilder(nama)
-        .append(jalan)
-        .append(notelp);
-
-        String str = strbld.toString();
-        return str;
+        return (nama + jalan + notelp);
 
         // return "name: PT Madju Merdeka\naddress: Jl. Kukusan]nphoneNumber: 628777xxxx";
 

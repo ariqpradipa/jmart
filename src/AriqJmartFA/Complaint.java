@@ -1,6 +1,7 @@
 package AriqJmartFA;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Complaint extends Recognizable implements FileParser {
@@ -19,8 +20,12 @@ public class Complaint extends Recognizable implements FileParser {
     }
 
     public String toString() {
-        this.desc = "pengiriman tidak cepat, kurir tersesat";
-        return desc;
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String deskripsi = this.desc;
+        String tanggal = dateFormat.format(this.date);
+
+        return ("date=" + tanggal + ", desc=" + deskripsi);
         
     }
     
