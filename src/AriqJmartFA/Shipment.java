@@ -36,7 +36,7 @@ public class Shipment implements FileParser {
         public static Duration NEXT_DAY = new Duration((byte)(0b00000100));
         public static Duration REGULER = new Duration((byte)(0b00001000));
         public static Duration KARGO = new Duration((byte)(0b00010000));
-        private byte bit;
+        private final byte bit;
         
         private Duration(byte bit) {
     
