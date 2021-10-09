@@ -51,15 +51,7 @@ public abstract class Recognizable {
 
     public int compareTo(Recognizable other) {
 
-        if(other.id == this.id) {
+        return Integer.compare(this.id, other.id);
 
-            return 1;
-
-        }
-        else {
-
-            return 0;
-
-        }
     }
 }

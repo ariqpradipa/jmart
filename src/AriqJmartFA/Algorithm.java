@@ -30,11 +30,14 @@ public class Algorithm {
         return count(iterator, pred);
 
     }
-    /*
-    public static <T> int count(T[][] array, Predicate<T> pred) {
+
+    public static <T> int count(T[] array, Predicate<T> pred) {
+
+        Iterator<T> iterator = Arrays.stream(array).iterator();
+        return count(iterator, pred);
 
     }
-    */
+
     public static <T> int count(Iterable<T> iterable, Predicate<T> pred) {
 
         Iterator <T> iterator = iterable.iterator();
@@ -79,38 +82,85 @@ public class Algorithm {
     public static boolean exists(Iterator<T> iterator, Predicate<T> pred) {
 
     }
-
-    public static T find(T[][] array, T value) {
-
-    }
-
-    public static T find(Iterable<T> iteravle, T value) {
-
-    }
-
-    public static T find(Iterator<T> iterator, T value) {
-
-    }
-
-    public static T find(T[][] array, Predicate<T> pred) {
-
-    }
-
-    public static T find(Iterable<T> iterable, Predicate<T> pred) {
-
-    }
-
-    public static T find(Iterator<T> iterator, Predicate<T> pred) {
-
-    }
-
-    public static T max(T first, T second) {
-
-    }
-
-    public static T min(T first, T second) {
-
-    }
     */
 
+    public static <T> T find(T[] array, T value) {
+
+        Iterator<T> iterator = Arrays.stream(array).iterator();
+        Predicate<T> pred = value::equals;
+        return find(iterator, value);
+
+    }
+
+    public static <T> T find(Iterable<T> iterable, T value) {
+
+        Predicate<T> pred = value::equals;
+        return find(iterable, pred);
+
+    }
+
+    public static <T> T find(Iterator<T> iterator, T value) {
+
+        Predicate<T> pred = value::equals;
+        return find(iterator, pred);
+
+    }
+
+    public static <T> T find(T[] array, Predicate<T> pred) {
+
+        Iterator<T> iterator = Arrays.stream(array).iterator();
+        return find(iterator, pred);
+
+    }
+
+    public static <T> T find(Iterable<T> iterable, Predicate<T> pred) {
+
+        return find(iterable.iterator(), pred);
+
+    }
+
+    public static <T> T find(Iterator<T> iterator, Predicate<T> pred) {
+
+        while(iterator.hasNext()) {
+
+            T object = iterator.next();
+
+            if(pred.predicate(object)) {
+
+                return object;
+
+            }
+        }
+
+        return null;
+
+    }
+
+    public static <T extends Comparable<? super T>> T max(T first, T second) {
+
+        if(first.compareTo(second) < 0) {
+
+            return second;
+
+        }
+        else {
+
+            return first;
+
+        }
+    }
+
+    public static <T extends Comparable<? super T>> T min(T first, T second) {
+
+        if(first.compareTo(second) < 0) {
+
+            return first;
+
+        }
+        else {
+
+            return second;
+
+        }
+    }
 }
