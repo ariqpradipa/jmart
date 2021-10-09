@@ -58,31 +58,54 @@ public class Algorithm {
         return out;
 
     }
-    /*
-    public static boolean exists(T[] array, T value) {
+
+    public static <T> boolean exists(T[] array, T value) {
+
+        Iterator<T> iterator = Arrays.stream(array).iterator();
+        Predicate<T> pred = value::equals;
+        return exists(iterator, value);
 
     }
 
-    public static boolean exists(Iterable<T> iterable, T value) {
+    public static <T> boolean exists(Iterable<T> iterable, T value) {
+
+        Predicate<T> pred = value::equals;
+        return exists(iterable, pred);
 
     }
 
-    public static boolean exists(Iterator<T> iterator, T value) {
+    public static <T> boolean exists(Iterator<T> iterator, T value) {
+
+        Predicate<T> pred = value::equals;
+        return exists(iterator, pred);
 
     }
 
-    public static boolean exists(T[][] array, Predicate<T> pred) {
+    public static <T> boolean exists(T[] array, Predicate<T> pred) {
+
+        Iterator<T> iterator = Arrays.stream(array).iterator();
+        return exists(iterator, pred);
 
     }
 
-    public static boolean exists(Iterable<T> iterable, Predicate<T> pred) {
+    public static <T> boolean exists(Iterable<T> iterable, Predicate<T> pred) {
+
+        return exists(iterable.iterator(), pred);
 
     }
 
-    public static boolean exists(Iterator<T> iterator, Predicate<T> pred) {
+    public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred) {
+
+        while(iterator.hasNext()) {
+            if(pred.predicate(iterator.next())) {
+                return true;
+            }
+        }
+
+        return false;
 
     }
-    */
+
 
     public static <T> T find(T[] array, T value) {
 
