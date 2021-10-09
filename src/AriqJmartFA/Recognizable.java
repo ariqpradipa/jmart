@@ -10,14 +10,56 @@ public abstract class Recognizable {
 
     }
 
+    public static <T> int setClosinId(Class<Recognizable> clazz, int id) {
+
+        if(Class.class.isAssignableFrom(Recognizable.class)) {
+
+            return 0;
+
+        }
+        else {
+
+            return 0;
+
+        }
+    }
+
+    public static <T> int getClosinId(Class<Recognizable> clazz) {
+
+        if(Class.class.isAssignableFrom(Recognizable.class)) {
+
+            return 0;
+
+        }
+        else {
+
+            return 0;
+
+        }
+    }
+
     public boolean equals(Object object) {
 
         return (object instanceof Recognizable && ((Recognizable) object).id == this.id);
     }
     
-    public boolean equals(Recognizable recog) {
+    public boolean equals(Recognizable other) {
 
-        return (recog.id == this.id);
+        return (other.id == this.id);
 
+    }
+
+    public int compareTo(Recognizable other) {
+
+        if(other.id == this.id) {
+
+            return 1;
+
+        }
+        else {
+
+            return 0;
+
+        }
     }
 }
