@@ -1,10 +1,7 @@
 package AriqJmartFA;
 
-public class Predicate<T> {
+public interface Predicate<T> {
 
-    public boolean predicate(T arg) {
+    abstract boolean predicate(T arg);
 
-        return false;
-
-    }
 }

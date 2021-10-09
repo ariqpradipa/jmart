@@ -1,39 +1,47 @@
 package AriqJmartFA;
 
-import java.util.Iterator;
+import java.util.*;
+import java.io.*;
 
 public class Algorithm {
-    /*
+
     private Algorithm() {
 
     }
 
-    public static <T> int count(T[][] array, T value) {
+    public static <T> int count(T[] array, T value) {
+
+        Iterator<T> iterator = Arrays.stream(array).iterator();
+        Predicate<T> pred = value::equals;
+        return count(iterator, value);
 
     }
 
     public static <T> int count(Iterable<T> iterable, T value) {
 
+        Predicate<T> pred = value::equals;
+        return count(iterable, pred);
+
     }
 
     public static <T> int count(Iterator<T> iterator, T value) {
 
-    }
+        Predicate<T> pred = value::equals;
+        return count(iterator, pred);
 
+    }
+    /*
     public static <T> int count(T[][] array, Predicate<T> pred) {
 
     }
-
+    */
     public static <T> int count(Iterable<T> iterable, Predicate<T> pred) {
 
-        int out = 0;
-
-        while(iterable.hasNext()) {
-            if(iterable.next().equals(pred))
-        }
+        Iterator <T> iterator = iterable.iterator();
+        return count(iterator, pred);
 
     }
-    */
+
     public static <T> int count(Iterator<T> iterator, Predicate<T> pred) {
 
         int out = 0;
