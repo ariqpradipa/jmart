@@ -24,19 +24,19 @@ public class Algorithm {
 
     }
 
-    public static <T> List collect(Iterator<T> iterator, T value) {
+    public static <T> List<T> collect(Iterator<T> iterator, T value) {
 
     }
 
-    public static <T> List collect(T[] array, Predicate<T> pred) {
+    public static <T> List<T> collect(T[] array, Predicate<T> pred) {
 
     }
 
-    public static <T> List collect(Iterable<T> iterable, T pred) {
+    public static <T> List<T> collect(Iterable<T> iterable, T pred) {
 
     }
 
-    public static <T> List collect(Iterator<T> iterator, T pred) {
+    public static <T> List<T> collect(Iterator<T> iterator, T pred) {
 
     }
     */
@@ -239,21 +239,19 @@ public class Algorithm {
 
     }
 
-
-
     public static <T extends Comparable<? super T>> T max(Iterator<? extends T> iterator) {
 
-        T next, candidate = iterator.next();
+        T next, max = iterator.next();
         while (iterator.hasNext()) {
 
-            if((next = iterator.next()).compareTo(candidate) > 0) {
+            if((next = iterator.next()).compareTo(max) > 0) {
 
-                candidate = next;
+                max = next;
 
             }
         }
 
-        return candidate;
+        return max;
 
     }
 
@@ -319,17 +317,17 @@ public class Algorithm {
 
     public static <T extends Comparable<? super T>> T min(Iterator<? extends T> iterator) {
 
-        T next, candidate = iterator.next();
+        T next, min = iterator.next();
         while (iterator.hasNext()) {
 
-            if(candidate.compareTo((next = iterator.next())) > 0) {
+            if(min.compareTo((next = iterator.next())) > 0) {
 
-                candidate = next;
+                min = next;
 
             }
         }
 
-        return candidate;
+        return min;
 
     }
 }
