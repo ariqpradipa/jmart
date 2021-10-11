@@ -8,6 +8,38 @@ public class Algorithm {
     private Algorithm() {
 
     }
+    /*
+    public static <T> List<T> collect(T[] array, T value) {
+
+        Iterator<T> iterator = Arrays.stream(array).iterator();
+        Predicate<T> pred = value::equals;
+        return collect(iterator, value);
+
+    }
+
+    public static <T>  List<T> collect(Iterable<T> iterable, T value) {
+
+        Object::equals(Object) = value::equals;
+        return collect(iterable, Object);
+
+    }
+
+    public static <T> List collect(Iterator<T> iterator, T value) {
+
+    }
+
+    public static <T> List collect(T[] array, Predicate<T> pred) {
+
+    }
+
+    public static <T> List collect(Iterable<T> iterable, T pred) {
+
+    }
+
+    public static <T> List collect(Iterator<T> iterator, T pred) {
+
+    }
+    */
 
     public static <T> int count(T[] array, T value) {
 
@@ -94,6 +126,7 @@ public class Algorithm {
 
     }
 
+    // yang ini gimanan caranya ni belum tau
     public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred) {
 
         while(iterator.hasNext()) {
@@ -171,6 +204,48 @@ public class Algorithm {
             return first;
 
         }
+    }
+
+    public static <T extends Comparable<? super T>> T max(T[] array) {
+
+        T max = array[0];
+        for(int i = 1; i < array.length; i++) {
+
+            if(max.compareTo(array[i]) < 0) {
+
+                max = array[i];
+
+            }
+        }
+
+        return max;
+
+    }
+
+    /*
+    public static <T extends Comparable<? super T>> T max(Iterable<? extends T> iterable) {
+
+        T next, candidate = iterable.next();
+        T max = Ordering.natural().max(iterable);
+
+        return max;
+
+    }
+    */
+    public static <T extends Comparable<? super T>> T max(Iterator<? extends T> iterator) {
+
+        T next, candidate = iterator.next();
+        while (iterator.hasNext()) {
+
+            if((next = iterator.next()).compareTo(candidate) > 0) {
+
+                candidate = next;
+
+            }
+        }
+
+        return candidate;
+
     }
 
     public static <T extends Comparable<? super T>> T min(T first, T second) {
