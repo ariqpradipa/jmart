@@ -222,16 +222,25 @@ public class Algorithm {
 
     }
 
-    /*
+
     public static <T extends Comparable<? super T>> T max(Iterable<? extends T> iterable) {
 
-        T next, candidate = iterable.next();
-        T max = Ordering.natural().max(iterable);
+        T max = iterable.iterator().next();
+        for(T elm : iterable) {
+
+            if(max.compareTo(elm) < 0) {
+
+                max = elm;
+
+            }
+        }
 
         return max;
 
     }
-    */
+
+
+
     public static <T extends Comparable<? super T>> T max(Iterator<? extends T> iterator) {
 
         T next, candidate = iterator.next();
@@ -248,6 +257,20 @@ public class Algorithm {
 
     }
 
+    public static <T extends Comparable<? super T>> T max(T first, T second, Comparator<? super T> comparator) {
+
+        if(first.compareTo(second) < 0) {
+
+            return second;
+
+        }
+        else {
+
+            return first;
+
+        }
+    }
+
     public static <T extends Comparable<? super T>> T min(T first, T second) {
 
         if(first.compareTo(second) < 0) {
@@ -261,4 +284,54 @@ public class Algorithm {
 
         }
     }
+
+    public static <T extends Comparable<? super T>> T min(T[] array) {
+
+        T min = array[0];
+        for(int i = 1; i < array.length; i++) {
+
+            if(array[i].compareTo(min) < 0) {
+
+                min = array[i];
+
+            }
+        }
+
+        return min;
+
+    }
+
+    public static <T extends Comparable<? super T>> T min(Iterable<? extends T> iterable) {
+
+        T min = iterable.iterator().next();
+        for(T elm : iterable) {
+
+            if(elm.compareTo(min) < 0) {
+
+                min = elm;
+
+            }
+        }
+
+        return min;
+
+    }
+
+    public static <T extends Comparable<? super T>> T min(Iterator<? extends T> iterator) {
+
+        T next, candidate = iterator.next();
+        while (iterator.hasNext()) {
+
+            if(candidate.compareTo((next = iterator.next())) > 0) {
+
+                candidate = next;
+
+            }
+        }
+
+        return candidate;
+
+    }
 }
+
+
