@@ -8,38 +8,105 @@ public class Algorithm {
     private Algorithm() {
 
     }
-    /*
+
     public static <T> List<T> collect(T[] array, T value) {
 
-        Iterator<T> iterator = Arrays.stream(array).iterator();
-        Predicate<T> pred = value::equals;
-        return collect(iterator, value);
+        List<T> list = new ArrayList<T>();
+        for(T a:array) {
+
+            if(a.equals(value)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return list;
 
     }
 
     public static <T>  List<T> collect(Iterable<T> iterable, T value) {
 
-        Object::equals(Object) = value::equals;
-        return collect(iterable, Object);
+        List<T> list = new ArrayList<T>();
+        for(T a:iterable) {
+
+            if(a.equals(value)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return list;
 
     }
 
     public static <T> List<T> collect(Iterator<T> iterator, T value) {
 
+        List<T> list = new ArrayList<T>();
+        while(iterator.hasNext()) {
+
+            T a = iterator.next();
+            if(a.equals(value)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return list;
+
     }
 
     public static <T> List<T> collect(T[] array, Predicate<T> pred) {
 
+        List<T> list = new ArrayList<T>();
+        for (T a: array) {
+
+            if(pred.predicate(a)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return list;
+
     }
 
-    public static <T> List<T> collect(Iterable<T> iterable, T pred) {
+    public static <T> List<T> collect(Iterable<T> iterable, Predicate<T> pred) {
+
+        List<T> list = new ArrayList<T>();
+        for (T a : iterable) {
+
+            if (pred.predicate(a)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return list;
 
     }
 
-    public static <T> List<T> collect(Iterator<T> iterator, T pred) {
+    public static <T> List<T> collect(Iterator<T> iterator, Predicate<T> pred) {
+
+        List<T> list = new ArrayList<T>();
+        while(iterator.hasNext()) {
+
+            T a = iterator.next();
+            if (pred.predicate(a)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return list;
 
     }
-    */
+
 
     public static <T> int count(T[] array, T value) {
 
