@@ -131,7 +131,9 @@ public class Algorithm {
 
         while(iterator.hasNext()) {
             if(pred.predicate(iterator.next())) {
+
                 return true;
+
             }
         }
 
