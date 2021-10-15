@@ -6,7 +6,7 @@ package AriqJmartFA;
  * @author Ariq Pradipa Santoso
  * @version 11/09/2021
  */
-
+// test comment
 public class Jmart {
     
     public static void main(String[] args) {
