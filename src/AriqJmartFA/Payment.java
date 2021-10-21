@@ -1,6 +1,6 @@
 package AriqJmartFA;
 
-public class Payment extends Invoice implements Transactor {
+public class Payment extends Invoice {
     
    
     public Shipment shipment;
@@ -21,14 +21,6 @@ public class Payment extends Invoice implements Transactor {
 
     }
 
-    @Override
-    public boolean validate() {
-
-        return false;
-
-    }
-
-    @Override
     public Invoice perform() {
 
         return null;

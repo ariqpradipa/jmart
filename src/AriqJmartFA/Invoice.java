@@ -3,7 +3,7 @@ package AriqJmartFA;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Invoice extends Recognizable implements FileParser {
+public class Invoice extends Recognizable {
 
     public String date;
     public int buyerId;
