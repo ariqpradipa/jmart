@@ -2,22 +2,15 @@ package AriqJmartFA;
 
 public class ProductRating {
 
-
-    private long total;
     private long count;
+    private long total;
 
     public ProductRating() {    
 
         this.total = 0;
         this.count = 0; 
 
-    }   
-    public void insert(int rating) { 
-        
-        this.total = this.total + rating;
-        this.count++;
-
-    }   
+    }
 
     public double getAverage() {
 
@@ -42,6 +35,13 @@ public class ProductRating {
     public long getTotal() { 
 
         return this.total;
+
+    }
+
+    public void insert(int rating) {
+
+        this.total = this.total + rating;
+        this.count++;
 
     }
 }

@@ -4,110 +4,80 @@ import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
-public class Shipment implements FileParser {
+public class Shipment {
 
+    public static final SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("E MMMM dd yyyy");
+    public static Plan INSTANT  = new Plan((byte)(0b00000001));
+    public static Plan SAME_DAY = new Plan((byte)(0b00000010));
+    public static Plan NEXT_DAY = new Plan((byte)(0b00000100));
+    public static Plan REGULER  = new Plan((byte)(0b00001000));
+    public static Plan KARGO    = new Plan((byte)(0b00010000));
     public String address;
-    public int shipmentCost;
-    public Duration duration;
+    public int cost;
+    public byte plan;
     public String receipt;
 
-    public Shipment(String address, int ShipmentCost, Duration duration, String receipt) {
+    public Shipment(String address, int cost, byte plan, String receipt) {
 
         this.address = address;
-        this.shipmentCost = ShipmentCost;
-        this.duration = duration;
+        this.cost = cost;
+        this.plan = plan;
         this.receipt = receipt;
 
     }
 
-    @Override
-    public boolean read(String content) {
-        
-        return false;
+    public String getEstimatedArrival(Date reference) {
 
-    }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(reference);
+        String strDate;
 
-    
-    public static class Duration {
-        
-        public static final SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("E MMMM dd yyyy");
-        public static Duration INSTANT = new Duration((byte)(0b00000001));
-        public static Duration SAME_DAY = new Duration((byte)(0b00000010));
-        public static Duration NEXT_DAY = new Duration((byte)(0b00000100));
-        public static Duration REGULER = new Duration((byte)(0b00001000));
-        public static Duration KARGO = new Duration((byte)(0b00010000));
-        private final byte bit;
-        
-        private Duration(byte bit) {
-    
-            this.bit = bit;
-    
+        if(this.plan == 0b00000001 || this.plan == 0b00000010) {
+
+            strDate = ESTIMATION_FORMAT.format(cal.getTime());
+            return strDate;
+
         }
+        else if(this.plan == 0b00000100) {
 
-        public String getEstimatedArrival(Date reference) {
+            cal.add(Calendar.DATE, 1);
+            strDate = ESTIMATION_FORMAT.format(cal.getTime());
+            return strDate;
+        }
+        else if(this.plan == 0b00001000) {
 
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(reference);
-            String strDate;
+            cal.add(Calendar.DATE, 2);
+            strDate = ESTIMATION_FORMAT.format(cal.getTime());
+            return strDate;
 
-            if(bit == 0b00000001 || bit == 0b00000010) {
+        }
+        else if(this.plan == 0b00010000) {
 
-                strDate = ESTIMATION_FORMAT.format(cal.getTime());
-                return strDate;
+            cal.add(Calendar.DATE, 3);
+            strDate = ESTIMATION_FORMAT.format(cal.getTime());
+            return strDate;
 
-            }
-            else if(bit == 0b00000100) {
+        }
+        else {
 
-                cal.add(Calendar.DATE, 1);
-                strDate = ESTIMATION_FORMAT.format(cal.getTime());
-                return strDate;
-            }
-            else if(bit == 0b00001000) {
+            return null;
 
-                cal.add(Calendar.DATE, 2);
-                strDate = ESTIMATION_FORMAT.format(cal.getTime());
-                return strDate;
-                
-            }
-            else if(bit == 0b00010000) {
-
-                cal.add(Calendar.DATE, 3);
-                strDate = ESTIMATION_FORMAT.format(cal.getTime());
-                return strDate;
-
-            }
-            else {
-
-                return null;
-                
-            }
         }
     }
 
-    public class MultiDuration {
+    public boolean isDuration(Plan reference) {
 
-        public byte bit;
+        return (this.plan & reference.bit) != 0;
 
-        
-        public MultiDuration(Duration ... args) {
+    }
 
-            byte flags = 0;
+    public static class Plan {
 
-            for (Duration arg : args) {
+        byte bit;
 
-                flags |= arg.bit;
+        private Plan(byte bit) {
 
-            }
-
-            bit = flags;
-              
         }
-        
-        
-        public boolean isDuration(Duration reference) {
-    
-            return (bit & reference.bit) != 0;
-    
-        } 
+
     }
 }

@@ -1,17 +1,16 @@
 package AriqJmartFA;
 
-public class Coupon extends Recognizable implements FileParser{
+public class Coupon extends Recognizable {
 
-    public final String name;
     public final int code;
     public final double cut;
-    public final Type type;
     public final double minimum;
+    public final String name;
+    public final Type type;
     private boolean used;
     
-    public Coupon(int id, String name, int code, Type type, double cut, double minimum) {
+    public Coupon(String name, int code, Type type, double cut, double minimum) {
 
-        super(id);
         this.name = name;
         this.code = code;
         this.cut = cut;
@@ -19,7 +18,26 @@ public class Coupon extends Recognizable implements FileParser{
         this.minimum = minimum;
         this.used = false;
 
+    }
 
+    public double apply(Treasury priceTag) {
+
+        this.used = true;
+
+        if(this.type == Type.DISCOUNT) {
+
+            return priceTag.getAdjustedPrice(this.minimum, this.cut) - (priceTag.getAdjustedPrice(this.minimum, this.cut) * (cut/100)); // skala discount 1-100
+
+        } else {
+
+            return priceTag.getAdjustedPrice(this.minimum, this.cut) - cut;
+
+        }
+    }
+
+    public boolean canApply(Treasury priceTag) {
+
+        return (priceTag.getAdjustedPrice(this.minimum, this.cut) >= this.minimum && !this.used);
     }
 
     public boolean isUsed() {
@@ -28,30 +46,9 @@ public class Coupon extends Recognizable implements FileParser{
 
     }
 
-    public boolean canApply(PriceTag priceTag) {
+    public static enum Type {
 
-        return (priceTag.getAdjustedPrice() >= this.minimum && !this.used);
-    }
+        DISCOUNT, REBATE
 
-    public double apply(PriceTag priceTag) {
-
-        this.used = true;
-
-        if(this.type == Type.DISCOUNT) {
-
-            return priceTag.getAdjustedPrice() - (priceTag.getAdjustedPrice() * (cut/100)); // skala discount 1-100
-
-        } else {
-
-            return priceTag.getAdjustedPrice() - cut;
-
-        }
-    }
-
-    @Override
-    public boolean read(String content) {
-       
-        return false;
-        
     }
 }

@@ -1,47 +1,41 @@
 package AriqJmartFA;
 
-public class Product extends Recognizable implements FileParser {
-    
-    public int storeId;
-    public String name;
-    public int weight;
-    public boolean conditionUsed;
-    public PriceTag priceTag;
+public class Product extends Recognizable {
+
+    public int accountId;
     public ProductCategory category;
-    public ProductRating rating;
-    public Shipment.MultiDuration multiDuration;
-   
+    public boolean conditionUsed;
+    public double discount;
+    public String name;
+    public double price;
+    public byte shipmentPlan;
+    public int weight;
 
-    public Product(int id, int storeId, String name, int weight, boolean conditionUsed, PriceTag priceTag, ProductCategory category, Shipment.MultiDuration multiDuration) {
+    public Product(int accountId, String name, int weight, boolean conditionUsed, double price, double discount, ProductCategory category, byte shipmentPlan) {
 
-        super(id);
-        this.storeId = storeId;
+        this.accountId = accountId;
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;
-        this.priceTag = priceTag;
+        this.price = price;
+        this.discount = discount;
         this.category = category;
-        this.multiDuration = multiDuration;
+        this.shipmentPlan = shipmentPlan;
         
-    }
-    
-    public boolean read(String content) {
-
-        return false;
-
     }
 
     public String toString() {
 
-        String nama = "Name: " + this.name;
+        String accID = "Account ID: " + this.accountId;
+        String nama = "\nName: " + this.name;
         String berat = "\nWeight " + this.weight;
         String kondisi = "\nCondition: " + this.conditionUsed;
-        String harga = "\nPriceTag: " + this.priceTag.price;
+        String harga = "\nPrice: " + this.price;
+        String diskon = "\nDiscount: " + this.discount;
         String kategori = "\nCategory: " + this.category;
-        String nilai = "\nRating: " + this.rating;
-        String sid = "\nstoreId: " + this.storeId;
+        String shipPlan = "\nShipment Plan: " + this.shipmentPlan;
 
-        return (nama + berat + kondisi + harga + kategori + nilai + sid);
+        return (accID + nama + berat + kondisi + harga + diskon + kategori + shipPlan);
         
         // return "Name: Harry Potter\nWeight: 1\nconditionUsed: false\npriceTag: 21000.0\ncategory: BOOK\nrating: 0\nstoreId: 1";
 

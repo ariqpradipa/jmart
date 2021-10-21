@@ -4,9 +4,26 @@ public abstract class Recognizable {
 
     public final int id;
 
-    protected Recognizable(int id) {
+    protected Recognizable() {
 
-        this.id = id;
+        this.id = 2006527052;
+
+    }
+
+    public int compareTo(Recognizable other) {
+
+        return Integer.compare(this.id, other.id);
+
+    }
+
+    public boolean equals(Object object) {
+
+        return (object instanceof Recognizable && ((Recognizable) object).id == this.id);
+    }
+
+    public boolean equals(Recognizable other) {
+
+        return (other.id == this.id);
 
     }
 
@@ -16,8 +33,7 @@ public abstract class Recognizable {
 
             return 0;
 
-        }
-        else {
+        } else {
 
             return 0;
 
@@ -30,28 +46,10 @@ public abstract class Recognizable {
 
             return 0;
 
-        }
-        else {
+        } else {
 
             return 0;
 
         }
-    }
-
-    public boolean equals(Object object) {
-
-        return (object instanceof Recognizable && ((Recognizable) object).id == this.id);
-    }
-    
-    public boolean equals(Recognizable other) {
-
-        return (other.id == this.id);
-
-    }
-
-    public int compareTo(Recognizable other) {
-
-        return Integer.compare(this.id, other.id);
-
     }
 }

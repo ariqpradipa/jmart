@@ -3,18 +3,15 @@ package AriqJmartFA;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Complaint extends Recognizable implements FileParser {
+public class Complaint extends Recognizable {
 
-    //public int paymentId;
     Date date;
     public String desc;
     
-    public Complaint(int id, String desc) {
+    public Complaint(String desc) {
 
-        super(id);
         this.date = new Date();
         this.desc = desc;
-
 
     }
 
@@ -26,11 +23,5 @@ public class Complaint extends Recognizable implements FileParser {
 
         return ("date=" + tanggal + ", desc=" + deskripsi);
         
-    }
-    
-    @Override
-    public boolean read(String content) {
-
-        return false;
     }
 }

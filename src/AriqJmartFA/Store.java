@@ -3,30 +3,22 @@ package AriqJmartFA;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Store extends Recognizable implements FileParser{
+public class Store extends Recognizable {
 
-    public static final String REGEX_PHONE = "\\(?(?:\\+62|62|0)[ .-]?\\d{8,11}";
     public static final String REGEX_NAME = "(?=^.{4,20}$)^[A-Z]([A-Za-z][\\s]?)+$";
-    public String name;
+    public static final String REGEX_PHONE = "\\(?(?:\\+62|62|0)[ .-]?\\d{8,11}";
     public String address;
+    public double balance;
+    public String name;
     public String phoneNumber;
 
-    public Store(int accountId, String name, String address, String phoneNumber) {
+    public Store(String name, String address, String phoneNumber, double balance) {
 
-        super(accountId);
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.balance = balance;
 
-    }
-
-    public Store(Account account, String name, String address, String phoneNumber) {
-
-        super(account.id);
-        this.name = name;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        
     }
 
     public String toString() {
@@ -34,18 +26,12 @@ public class Store extends Recognizable implements FileParser{
         String nama = "Name: " + this.name;
         String jalan = "\nAddress: " + this.address;
         String notelp = "\nPhoneNumber: " + this.phoneNumber;
+        String bal = "\nBalance: " + this.balance;
 
-        return (nama + jalan + notelp);
+        return (nama + jalan + notelp + bal);
 
         // return "name: PT Madju Merdeka\naddress: Jl. Kukusan]nphoneNumber: 628777xxxx";
 
-    }
-    
-    @Override
-    public boolean read(String content) {
-        
-        return false;
-        
     }
 
     public boolean validate() {

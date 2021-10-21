@@ -5,16 +5,16 @@ import java.util.Date;
 
 public class Invoice extends Recognizable {
 
-    public String date;
     public int buyerId;
-    public int productId;
     public int complaintId;
+    public String date;
+    ArrayList<Record> history;
+    public int productId;
     public Rating rating;
     public Status status;
 
-    protected Invoice(int id, int buyerId, int productId) {
+    protected Invoice(int buyerId, int productId) {
 
-        super(id);
         this.buyerId = buyerId;
         this.productId = productId;
         this.date = "Date";
@@ -24,37 +24,30 @@ public class Invoice extends Recognizable {
 
     }
 
-    public boolean read(String content) {
+    double getTotalPay() {
 
-        return false;
+        return 0;
 
     }
 
-    public double getTotalPay() {
+    public static enum Status{
 
-        return 0;
-        
+        CANCELLED, COMPLAINT, FAILED, FINISHED, ON_DELIVERY,
+        ON_PROGRESS, WAITING_CONFIRMATION
+
+    }
+
+    public static enum Rating {
+
+        BAD, GOOD, NEUTRAL, NONE
+
     }
 
     public class Record {
 
-        public Status status;
         public Date date;
         public String message;
-        public ArrayList<Record> history;
-
-    }
-
-    public enum Status{
-
-        WAITING_CONFIRMATION, CANCELLED, ON_PROGRESS, ON_DELIVERY,
-        COMPLAINT, FINISHED, FAILED
-
-    }
-
-    public enum Rating {
-
-        NONE, BAD, NEUTRAL, GOOD
+        public Status status;
 
     }
 }
