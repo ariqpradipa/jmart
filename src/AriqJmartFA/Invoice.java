@@ -3,7 +3,7 @@ package AriqJmartFA;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Invoice extends Recognizable {
+public class Invoice extends Serializable {
 
     public int buyerId;
     public int complaintId;

@@ -3,7 +3,7 @@ package AriqJmartFA;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Complaint extends Recognizable {
+public class Complaint extends Serializable {
 
     Date date;
     public String desc;

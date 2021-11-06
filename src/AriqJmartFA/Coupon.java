@@ -1,6 +1,6 @@
 package AriqJmartFA;
 
-public class Coupon extends Recognizable {
+public class Coupon extends Serializable {
 
     public final int code;
     public final double cut;
