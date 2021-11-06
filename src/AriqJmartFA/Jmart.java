@@ -47,17 +47,17 @@ public class Jmart {
 
     public static void main(String[] args) {
 
-        /*
+
         try {
             List<Product> list = read("src/db/randomProductList.json");
             List<Product> filtered = filterByPrice(list, 0.0, 20000.0);
             filtered.forEach(product -> System.out.println(product.price));
         } catch (Throwable t) {
 
-            t.printStactTrace();
+            t.printStackTrace();
 
         }
-        */
+
 
 
         /*
