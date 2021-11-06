@@ -47,6 +47,18 @@ public class Jmart {
 
     public static void main(String[] args) {
 
+        /*
+        try {
+            List<Product> list = read("src/db/randomProductList.json");
+            List<Product> filtered = filterByPrice(list, 0.0, 20000.0);
+            filtered.forEach(product -> System.out.println(product.price));
+        } catch (Throwable t) {
+
+            t.printStactTrace();
+
+        }
+        */
+
 
         /*
         System.out.println("account id:" + new Account(null, null, null, -1).id);
@@ -62,7 +74,7 @@ public class Jmart {
 
     public static List<Product> read(String filePath) throws FileNotFoundException {
 
-        JsonReader reader = new JsonReader(new FileReader("src/db/randomProductList.json"));
+        JsonReader reader = new JsonReader(new FileReader(filePath));
         Product[] jsonProduct = new Gson().fromJson(reader, Product[].class);
 
         List<Product> result = new ArrayList<Product>();
