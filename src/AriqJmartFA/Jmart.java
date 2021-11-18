@@ -84,8 +84,29 @@ public class Jmart {
     }
 
     public static void main(String[] args) {
+        /*
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Hello");
+        list.add("Halo");
+        list.add("Hi");
+        list.add("Hola");
+        list.add("Hai");
+        list.add("NiHao");
+        list.add("Ohayou");
+        list.add("Buongiorno");
+        list.add("Shalom");
+        list.add("Ola");
+        list.add("Ciao");
+        list.add("Hei");
 
+        System.out.println(list.size());
 
+        for(String product : filterByName(list, "ha", 2, 2)) {
+            System.out.println(product);
+        }
+        */
+
+        /*
         try {
             List<Product> list = read("src/db/randomProductList.json");
             List<Product> filtered = filterByPrice(list, 13000, 15000);
@@ -95,7 +116,7 @@ public class Jmart {
             t.printStackTrace();
 
         }
-
+        */
 
 
         /*
