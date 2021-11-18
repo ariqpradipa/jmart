@@ -509,6 +509,61 @@ public class Algorithm {
         return min;
 
     }
+
+    public static <T> List<Product> paginate(T[] array, int page, int pageSize, Predicate<Product> pred) {
+
+        List<Product> result = new ArrayList<Product>();
+        int currIdx = page > 1 ? (page-1)*pageSize : 0;
+
+        for(int i = 0; i < pageSize && i < array.length - currIdx; i++) {
+
+            if(pred.predicate((Product) array[i])) {
+
+                result.add((Product) array[i]);
+
+            }
+        }
+
+        return result;
+
+    }
+
+    public static <T> List<Product> paginate(Iterable<T> iterable, int page, int pageSize, Predicate<Product> pred) {
+
+        List<T> list = new ArrayList<T>();
+        int currIdx = page > 1 ? (page-1)*pageSize : 0;
+
+        for(T a:iterable) {
+
+            if(pred.predicate((Product) a)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return (List<Product>) list;
+
+    }
+
+    public static <T> List<Product> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<Product> pred) {
+
+        List<T> list = new ArrayList<T>();
+        int currIdx = page > 1 ? (page-1)*pageSize : 0;
+
+        while(iterator.hasNext()) {
+
+            T a = iterator.next();
+            if(pred.predicate((Product) a)) {
+
+                list.add(a);
+
+            }
+        }
+
+        return (List<Product>) list;
+
+    }
 }
 
 

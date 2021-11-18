@@ -7,7 +7,7 @@ public class Invoice extends Serializable {
 
     public int buyerId;
     public int complaintId;
-    public Date date = new Date();
+    public Date date;
     public int productId;
     public Rating rating;
 
@@ -16,6 +16,7 @@ public class Invoice extends Serializable {
         this.buyerId = buyerId;
         this.productId = productId;
         this.complaintId = -1;
+        this.date = new Date();
         this.rating = Rating.NONE;
 
     }
@@ -36,14 +37,6 @@ public class Invoice extends Serializable {
     public static enum Rating {
 
         BAD, GOOD, NEUTRAL, NONE
-
-    }
-
-    public class Record {
-
-        public Date date;
-        public String message;
-        public Status status;
 
     }
 }

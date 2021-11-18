@@ -30,8 +30,10 @@ public class Payment extends Invoice {
         public Status status;
 
         public Record(Status status, String message) {
+
             this.status = status;
             this.message = message;
+
         }
     }
 }

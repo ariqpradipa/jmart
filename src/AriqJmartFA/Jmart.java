@@ -131,6 +131,7 @@ public class Jmart {
 
     }
 
+    /*
     private static List<Product> paginate(List<Product> list, int page, int pageSize, Predicate<Product> pred) {
 
         List<Product> result = new ArrayList<Product>();
@@ -148,6 +149,7 @@ public class Jmart {
         return result;
 
     }
+    */
 
     public static List<Product> read(String filePath) throws FileNotFoundException {
 
