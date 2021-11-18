@@ -27,7 +27,7 @@ public class Payment extends Invoice {
 
         public final Date date = new Date();
         public String message;
-        public Status status;
+        public static Status status;
 
         public Record(Status status, String message) {
 

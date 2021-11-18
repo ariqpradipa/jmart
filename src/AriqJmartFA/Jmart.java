@@ -8,7 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +21,96 @@ import java.util.ArrayList;
 
 public class Jmart {
 
+    public static long DELIVERED_LIMIT_MS = 2;
+    public static long ON_DELIVERY_LIMIT_MS = 2;
+    public static long ON_PROGRESS_LIMIT_MS = 2;
+    public static long WAITING_CONF_LIMIT_MS = 2;
 
+
+    public static void main(String[] args) {
+
+
+
+    }
+
+    public static boolean paymentTimeKeeper(Payment payment) {
+
+        long startTime = new Date().getTime();
+        long endTime = new Date().getTime();
+        long timeElapsed = endTime - startTime;
+
+        if(Payment.Record.status == Invoice.Status.WAITING_CONFIRMATION &&timeElapsed > WAITING_CONF_LIMIT_MS) {
+            return false;
+        }
+        if(Payment.Record.status == Invoice.Status.ON_PROGRESS && timeElapsed > ON_PROGRESS_LIMIT_MS) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    /*
+    public static void main(String[] args) {
+
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Hello");
+        list.add("Halo");
+        list.add("Hi");
+        list.add("Hola");
+        list.add("Hai");
+        list.add("NiHao");
+        list.add("Ohayou");
+        list.add("Buongiorno");
+        list.add("Shalom");
+        list.add("Ola");
+        list.add("Ciao");
+        list.add("Hei");
+
+        System.out.println(list.size());
+
+        for(String product : filterByName(list, "ha", 2, 2)) {
+            System.out.println(product);
+        }
+
+
+
+        try {
+            List<Product> list = read("src/db/randomProductList.json");
+            List<Product> filtered = filterByPrice(list, 13000, 15000);
+            filtered.forEach(product -> System.out.println(product.price));
+        } catch (Throwable t) {
+
+            t.printStackTrace();
+
+        }
+
+
+
+
+        System.out.println("account id:" + new Account(null, null, null, -1).id);
+        System.out.println("account id:" + new Account(null, null, null, -1).id);
+        System.out.println("account id:" + new Account(null, null, null, -1).id);
+
+        System.out.println("payment id:" + new Payment(-1, -1, -1, null).id);
+        System.out.println("payment id:" + new Payment(-1, -1, -1, null).id);
+        System.out.println("payment id:" + new Payment(-1, -1, -1, null).id);
+        }
+     */
+
+
+
+
+    public static List<Product> read(String filePath) throws FileNotFoundException {
+
+        JsonReader reader = new JsonReader(new FileReader(filePath));
+        Product[] jsonProduct = new Gson().fromJson(reader, Product[].class);
+
+        return new ArrayList<Product>(Arrays.asList(jsonProduct));
+
+    }
+
+    /*
     public static List<Product> filterByAccountId(List<Product> list, int accountId, int page, int pageSize) {
 
         List<Product> result = new ArrayList<Product>();
@@ -83,55 +173,6 @@ public class Jmart {
 
     }
 
-    public static void main(String[] args) {
-        /*
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Hello");
-        list.add("Halo");
-        list.add("Hi");
-        list.add("Hola");
-        list.add("Hai");
-        list.add("NiHao");
-        list.add("Ohayou");
-        list.add("Buongiorno");
-        list.add("Shalom");
-        list.add("Ola");
-        list.add("Ciao");
-        list.add("Hei");
-
-        System.out.println(list.size());
-
-        for(String product : filterByName(list, "ha", 2, 2)) {
-            System.out.println(product);
-        }
-        */
-
-        /*
-        try {
-            List<Product> list = read("src/db/randomProductList.json");
-            List<Product> filtered = filterByPrice(list, 13000, 15000);
-            filtered.forEach(product -> System.out.println(product.price));
-        } catch (Throwable t) {
-
-            t.printStackTrace();
-
-        }
-        */
-
-
-        /*
-        System.out.println("account id:" + new Account(null, null, null, -1).id);
-        System.out.println("account id:" + new Account(null, null, null, -1).id);
-        System.out.println("account id:" + new Account(null, null, null, -1).id);
-
-        System.out.println("payment id:" + new Payment(-1, -1, -1, null).id);
-        System.out.println("payment id:" + new Payment(-1, -1, -1, null).id);
-        System.out.println("payment id:" + new Payment(-1, -1, -1, null).id);
-        */
-
-    }
-
-    /*
     private static List<Product> paginate(List<Product> list, int page, int pageSize, Predicate<Product> pred) {
 
         List<Product> result = new ArrayList<Product>();
@@ -150,16 +191,6 @@ public class Jmart {
 
     }
     */
-
-    public static List<Product> read(String filePath) throws FileNotFoundException {
-
-        JsonReader reader = new JsonReader(new FileReader(filePath));
-        Product[] jsonProduct = new Gson().fromJson(reader, Product[].class);
-
-        return new ArrayList<Product>(Arrays.asList(jsonProduct));
-
-    }
-
 
     /*
     class Country {

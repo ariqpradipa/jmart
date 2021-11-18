@@ -39,4 +39,5 @@ public class Invoice extends Serializable {
         BAD, GOOD, NEUTRAL, NONE
 
     }
+
 }
