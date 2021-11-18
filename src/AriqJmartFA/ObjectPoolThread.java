@@ -5,7 +5,7 @@ import java.util.function.Function;
 
 public class ObjectPoolThread<T> extends Thread{
     private boolean exitSignal;
-    private Vector<T> objectPool;
+    private Vector<T> objectPool = new Vector<>();
     private Function<T, Boolean> routine;
 
     public ObjectPoolThread(String name, Function<T, Boolean> routine) {
@@ -24,7 +24,7 @@ public class ObjectPoolThread<T> extends Thread{
     }
     public synchronized void add(T object) {
 
-        objectPool.add(object);
+        this.objectPool.add(object);
 
     }
     public synchronized void exit() {
@@ -44,9 +44,6 @@ public class ObjectPoolThread<T> extends Thread{
             e.printStackTrace();
         }
 
-        for(T x : objectPool) {
-            this.routine = (Function<T, Boolean>) x;
-        }
 
         exit();
 

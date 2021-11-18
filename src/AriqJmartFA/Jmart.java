@@ -22,14 +22,31 @@ import java.util.ArrayList;
 public class Jmart {
 
     public static long DELIVERED_LIMIT_MS = 2;
-    public static long ON_DELIVERY_LIMIT_MS = 2;
-    public static long ON_PROGRESS_LIMIT_MS = 2;
-    public static long WAITING_CONF_LIMIT_MS = 2;
+    public static long ON_DELIVERY_LIMIT_MS = 4;
+    public static long ON_PROGRESS_LIMIT_MS = 6;
+    public static long WAITING_CONF_LIMIT_MS = 8;
 
 
     public static void main(String[] args) {
 
+        try {
+            JsonTable<Payment> table = new JsonTable<>(Payment.class, "src/db/randomPaymentList.json");
+            ObjectPoolThread<Payment> paymentPool = new ObjectPoolThread<Payment>("Thread-pp", Jmart::paymentTimeKeeper);
+            paymentPool.start();
+            table.forEach(paymentPool::add);
+            while(paymentPool.size() != 0);
+            paymentPool.exit();
+            while(paymentPool.isAlive());
+            System.out.println("Thread Exited Successfully");
+            Gson gson = new Gson();
+            table.forEach(payment -> {
+                String history = gson.toJson(payment.history);
+                System.out.println(history);
+            });
 
+        } catch(Throwable t) {
+            t.printStackTrace();
+        }
 
     }
 
