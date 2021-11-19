@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author Ariq Pradipa Santoso
  * @version 11/09/2021
  */
-
+// backed up
 public class Jmart {
 
     public static long DELIVERED_LIMIT_MS = 2;
