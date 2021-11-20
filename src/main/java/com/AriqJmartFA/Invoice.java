@@ -1,6 +1,7 @@
 package com.AriqJmartFA;
 
-import java.util.ArrayList;
+import com.AriqJmartFA.dbjson.Serializable;
+
 import java.util.Date;
 
 public class Invoice extends Serializable {

@@ -1,5 +1,7 @@
 package com.AriqJmartFA;
 
+import com.AriqJmartFA.dbjson.Serializable;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 

@@ -1,5 +1,7 @@
 package com.AriqJmartFA;
 
+import com.AriqJmartFA.dbjson.Serializable;
+
 public class Coupon extends Serializable {
 
     public final int code;
