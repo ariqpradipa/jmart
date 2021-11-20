@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import com.AriqJmartFA.dbjson.JsonDBEngine;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import java.util.Date;
@@ -28,7 +30,9 @@ public class Jmart {
 
     public static void main(String[] args) {
 
+        JsonDBEngine.Run(Jmart.class);
         SpringApplication.run(Jmart.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
 
     }
 }

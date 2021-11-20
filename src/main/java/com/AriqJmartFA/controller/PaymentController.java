@@ -2,9 +2,13 @@ package com.AriqJmartFA.controller;
 
 import com.AriqJmartFA.ObjectPoolThread;
 import com.AriqJmartFA.Payment;
+import com.AriqJmartFA.dbjson.JsonAutowired;
 import com.AriqJmartFA.dbjson.JsonTable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class PaymentController {
+@RequestMapping("/payment")
+public class PaymentController implements BasicGetController<Payment> {
     public static final long DELIVERED_LIMIT_MS = 2;
     public static final long ON_DELIVERY_LIMIT_MS = 3;
     public static final long ON_PROGRESS_LIMIT_MS = 4;
@@ -12,24 +16,28 @@ public class PaymentController {
     public static JsonTable<Payment> paymentTable;
     ObjectPoolThread<Payment> poolThread;
 
+    @PostMapping("/{id}/accept")
     boolean accept(int id) {
         return false;
     }
 
+    @PostMapping("/{id}/cancel")
     boolean cancel(int id) {
         return false;
     }
 
+    @PostMapping("/create")
     Payment create(int buyerId, int productId, int productCount, String ShipmentDuration, String shipmentPlan) {
         return null;
     }
 
     public JsonTable getJsonTable() {
 
-        return null;
+        return paymentTable;
 
     }
 
+    @PostMapping("/{id}/submit")
     boolean submit(int id, String receipt) {
 
         return false;
@@ -41,5 +49,4 @@ public class PaymentController {
         return false;
 
     }
-
 }
