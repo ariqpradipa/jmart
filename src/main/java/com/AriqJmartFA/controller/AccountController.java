@@ -51,20 +51,31 @@ public class AccountController implements BasicGetController<Account> {
             @RequestParam String password
     ) {
 
-        if(name.isBlank() || !REGEX_PATTERN_EMAIL.matcher(email).matches()) {
+        if(name.isBlank()) {
 
             return null;
-
-        } else if(!REGEX_PATTERN_PASSWORD.matcher(password).matches()){
-            return null;
-
-        } else {
-
-            Account account = new Account(name, email, password, 0);
-            accountTable.add(account);
-            return account;
 
         }
+        if(!REGEX_PATTERN_EMAIL.matcher(email).matches()) {
+
+            return null;
+
+        }
+        if(!REGEX_PATTERN_PASSWORD.matcher(password).matches()){
+
+            return null;
+
+        }
+        for(Account account : accountTable) {
+            if(account.email == email) {
+                return null;
+            }
+        }
+
+        Account account = new Account(name, email, password, 0);
+        accountTable.add(account);
+        return account;
+
     }
 
     @PostMapping("/{id}/registerStore")
