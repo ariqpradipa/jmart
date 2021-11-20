@@ -6,7 +6,9 @@ import com.AriqJmartFA.dbjson.JsonAutowired;
 import com.AriqJmartFA.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
     public static final long DELIVERED_LIMIT_MS = 2;
