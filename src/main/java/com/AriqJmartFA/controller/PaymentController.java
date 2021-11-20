@@ -16,7 +16,12 @@ public class PaymentController implements BasicGetController<Payment> {
     public static final long ON_PROGRESS_LIMIT_MS = 4;
     public static final long WAITING_CONF_LIMIT_MS = 5;
     public static JsonTable<Payment> paymentTable;
-    ObjectPoolThread<Payment> poolThread;
+
+    static {
+
+        ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>("Thread-pp", PaymentController::timekeeper);
+
+    }
 
     @PostMapping("/{id}/accept")
     boolean accept(int id) {

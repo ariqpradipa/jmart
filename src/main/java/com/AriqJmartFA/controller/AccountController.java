@@ -51,8 +51,11 @@ public class AccountController implements BasicGetController<Account> {
             @RequestParam String password
     ) {
 
-        if(name.isBlank() || REGEX_PATTERN_EMAIL.matcher(email).matches()) {
+        if(name.isBlank() || !REGEX_PATTERN_EMAIL.matcher(email).matches()) {
 
+            return null;
+
+        } else if(!REGEX_PATTERN_PASSWORD.matcher(password).matches()){
             return null;
 
         } else {
