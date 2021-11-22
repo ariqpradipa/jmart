@@ -510,6 +510,64 @@ public class Algorithm {
 
     }
 
+    public static <T> List paginate (T[] array, int page, int pageSize, Predicate<T> pred) {
+
+        List<T> a = new ArrayList<T>();
+        List<T> b = new ArrayList<T>();
+
+        for(T c : array) if(pred.predicate(c)) a.add(c);
+
+        int x = 0;
+        for(T d : b) {
+
+            if (x >= ((page)*pageSize) && x < ((page+1)*pageSize)) b.add(d);
+            x++;
+
+        }
+
+        return b;
+
+    }
+
+    public static <T> List paginate (Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
+
+        List<T> a = new ArrayList<T>();
+        List<T> b = new ArrayList<T>();
+
+        for(T c : iterable) if(pred.predicate(c)) a.add(c);
+
+        int x = 0;
+        for(T d : b) {
+
+            if (x >= ((page)*pageSize) && x < ((page+1)*pageSize)) b.add(d);
+            x++;
+
+        }
+
+        return b;
+
+    }
+
+    public static <T> List paginate (Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
+
+        List<T> a = new ArrayList<T>();
+        List<T> b = new ArrayList<T>();
+
+        int x = 0;
+        while (iterator.hasNext()) {
+
+            T i = iterator.next();
+            if(pred.predicate(i)) a.add(i);
+            if (x >= ((page)*pageSize) && x < ((page+1)*pageSize)) b.add(i);
+            x++;
+
+        }
+
+        return b;
+
+    }
+
+    /*
     public static <T> List<Product> paginate(T[] array, int page, int pageSize, Predicate<Product> pred) {
 
         List<Product> result = new ArrayList<Product>();
@@ -564,6 +622,8 @@ public class Algorithm {
         return (List<Product>) list;
 
     }
+    */
+
 }
 
 

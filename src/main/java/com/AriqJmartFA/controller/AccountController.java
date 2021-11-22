@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import com.AriqJmartFA.Account;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @RestController
 @RequestMapping("/account")
@@ -30,10 +33,10 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/login")
-    Account login(String email, String password) {
+    Account login(String email, String password) throws NoSuchAlgorithmException {
 
         for(Account account : getJsonTable()) {
-            if(account.email == email && account.password == password) {
+            if(account.email == email && account.password == md5Hashing(password)) {
 
                 return account;
 
@@ -45,11 +48,13 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/register")
-    Account register (
+    Account register  (
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String password
-    ) {
+    ) throws NoSuchAlgorithmException {
+
+        String md5Password;
 
         if(name.isBlank()) {
 
@@ -72,9 +77,28 @@ public class AccountController implements BasicGetController<Account> {
             }
         }
 
-        Account account = new Account(name, email, password, 0);
+
+        Account account = new Account(name, email, md5Hashing(password), 0);
         accountTable.add(account);
         return account;
+
+    }
+
+    public String md5Hashing(String pass) throws NoSuchAlgorithmException {
+
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        md5.update(pass.getBytes());
+
+        byte[] digest = md5.digest();
+
+        StringBuilder sb = new StringBuilder(32);
+        for(byte b : digest) {
+
+            sb.append(String.format("%02x", b & 0xff));
+
+        }
+
+        return sb.toString();
 
     }
 
