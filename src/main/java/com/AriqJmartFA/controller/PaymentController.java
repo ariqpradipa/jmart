@@ -87,21 +87,14 @@ public class PaymentController implements BasicGetController<Payment> {
                         if(account.balance >= productPrice * productCount) {
 
                             account.balance -= productPrice * productCount;
-                            for(Payment payment : paymentTable) {
 
-                                if(buyerId == payment.buyerId) {
+                            Payment payment = new Payment(buyerId, productId, productCount, new Shipment(shipmentAddress, 0, shipmentPlan, null));
+                            payment.history.add(new Payment.Record(WAITING_CONFIRMATION, "waiting"));
+                            getJsonTable().add(payment);
+                            poolThread.add(payment);
 
-                                    Payment.Record newRecord = new Payment.Record(WAITING_CONFIRMATION, "waiting");
-                                    payment.history.add(newRecord);
-                                    payment.shipment = new Shipment(shipmentAddress, 0, shipmentPlan, null);
+                            return payment;
 
-                                    getJsonTable().add(payment);
-                                    poolThread.add(payment);
-
-                                    return payment;
-
-                                }
-                            }
                         }
                     }
                 }
