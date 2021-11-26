@@ -33,7 +33,7 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/login")
-    Account login(String email, String password) throws NoSuchAlgorithmException {
+    Account login(@RequestParam String email, String password) throws NoSuchAlgorithmException {
 
         for(Account account : getJsonTable()) {
             if(account.email == email && account.password == md5Hashing(password)) {
@@ -103,7 +103,10 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/{id}/registerStore")
-    Store registerStore(int id, String name, String address, String phoneNumber) {
+    Store registerStore(@RequestParam int id,
+                        @RequestParam String name,
+                        @RequestParam String address,
+                        @RequestParam String phoneNumber) {
 
         for(Account account : accountTable) {
             if(account.id == id && account.store == null) {
@@ -119,7 +122,8 @@ public class AccountController implements BasicGetController<Account> {
 
     }
 
-    boolean topUp(int id, double balance) {
+    boolean topUp(@RequestParam int id,
+                  @RequestParam double balance) {
 
         for(Account account : accountTable) {
             if(account.id == id) {

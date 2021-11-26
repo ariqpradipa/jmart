@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BasicGetController<T extends Serializable> {
 
-    public default T getById(int id) {
+    public default T getById(@RequestParam int id) {
 
         for(T object : getJsonTable()) {
             if(object.id == id) {
