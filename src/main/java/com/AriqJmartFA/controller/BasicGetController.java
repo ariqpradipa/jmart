@@ -9,11 +9,14 @@ import java.util.List;
 
 public interface BasicGetController<T extends Serializable> {
 
+    @GetMapping("/{id}")
     public default T getById(@RequestParam int id) {
 
         for(T object : getJsonTable()) {
             if(object.id == id) {
+
                 return object;
+
             }
         }
 
@@ -23,7 +26,7 @@ public interface BasicGetController<T extends Serializable> {
 
     public abstract JsonTable<T> getJsonTable();
 
-    @RequestMapping(value ="/page", method = RequestMethod.GET)
+    @GetMapping(value ="/page")
     public default List<T> getPage(@RequestParam(defaultValue = "5") int page,
                                    @RequestParam(defaultValue = "2") int pageSize) {
 

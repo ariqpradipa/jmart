@@ -4,9 +4,7 @@ import com.AriqJmartFA.Product;
 import com.AriqJmartFA.ProductCategory;
 import com.AriqJmartFA.dbjson.JsonAutowired;
 import com.AriqJmartFA.dbjson.JsonTable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,10 +12,10 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController implements BasicGetController {
 
+    @JsonAutowired(filepath = "/json/Product.json", value = Product.class)
     public static JsonTable<Product> productTable;
 
-    /*
-    @RequestMapping("/create")
+    @PostMapping(value = "/create")
     Product create(@RequestParam int accountId,
                    @RequestParam String name,
                    @RequestParam int weight,
@@ -27,28 +25,29 @@ public class ProductController implements BasicGetController {
                    @RequestParam ProductCategory category,
                    @RequestParam byte shipmentPlan) {
 
+        return null;
+
 
     }
-    */
 
-    //@JsonAutowired(Product.class, filepath = "product.json")
     public JsonTable<Product> getJsonTable() {
 
         return productTable;
 
     }
 
-    /*
-    @RequestMapping("/{id}/store")
+    @GetMapping(value ="/{id}/store")
     List<Product> getProductByStore(@RequestParam int id,
                                     @RequestParam int page,
                                     @RequestParam int pageSize) {
+
+        return null;
 
 
 
     }
 
-    @RequestMapping("/getFiltered")
+    @GetMapping(value = "/getFiltered")
     List<Product> getProductFiltered(@RequestParam int page,
                                      @RequestParam int pageSize,
                                      @RequestParam int accountId,
@@ -57,7 +56,9 @@ public class ProductController implements BasicGetController {
                                      @RequestParam int maxPrice,
                                      @RequestParam ProductCategory category) {
 
+        return null;
+
     }
-    */
+
 
 }

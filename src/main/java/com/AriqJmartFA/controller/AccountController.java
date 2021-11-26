@@ -24,6 +24,7 @@ public class AccountController implements BasicGetController<Account> {
     public static final Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
 
+    @JsonAutowired(filepath = "/json/Account.json", value = Account.class)
     public static JsonTable<Account> accountTable;
 
     public JsonTable<Account> getJsonTable() {
@@ -122,6 +123,7 @@ public class AccountController implements BasicGetController<Account> {
 
     }
 
+    @PostMapping("/{id}/topUp")
     boolean topUp(@RequestParam int id,
                   @RequestParam double balance) {
 
