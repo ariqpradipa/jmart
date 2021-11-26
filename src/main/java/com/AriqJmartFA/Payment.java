@@ -17,9 +17,9 @@ public class Payment extends Invoice {
 
     }
 
-    public double getTotalPay() {
+    public static double getTotalPay(Product product) {
 
-        return 0;
+        return product.price;
 
     }
 

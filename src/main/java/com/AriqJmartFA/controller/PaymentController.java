@@ -1,7 +1,6 @@
 package com.AriqJmartFA.controller;
 
-import com.AriqJmartFA.ObjectPoolThread;
-import com.AriqJmartFA.Payment;
+import com.AriqJmartFA.*;
 import com.AriqJmartFA.dbjson.JsonAutowired;
 import com.AriqJmartFA.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+
+import static com.AriqJmartFA.Invoice.Status.*;
+import static com.AriqJmartFA.controller.AccountController.accountTable;
+import static com.AriqJmartFA.controller.ProductController.productTable;
 
 @RestController
 @RequestMapping("/payment")
@@ -22,23 +25,47 @@ public class PaymentController implements BasicGetController<Payment> {
     @JsonAutowired(filepath = "/json/Payment.json", value = Payment.class)
     public static JsonTable<Payment> paymentTable;
 
-    static {
 
-        ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>("Thread-pp", PaymentController::timekeeper);
+    static ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>("Thread-pp", PaymentController::timekeeper);
 
-    }
 
     @PostMapping("/{id}/accept")
     boolean accept(@RequestParam int id) {
 
-        return true;
+        for(Payment payment : paymentTable) {
+
+            if(id == payment.id) {
+                if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
+
+                    Payment.Record newRecord = new Payment.Record(ON_PROGRESS, "on progress");
+                    payment.history.add(newRecord);
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
 
     }
 
     @PostMapping("/{id}/cancel")
     boolean cancel(@RequestParam int id) {
 
-        return true;
+        for(Payment payment : paymentTable) {
+
+            if(id == payment.id) {
+                if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
+
+                    Payment.Record newRecord = new Payment.Record(CANCELLED, "cancelled");
+                    payment.history.add(newRecord);
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
 
     }
 
@@ -46,8 +73,40 @@ public class PaymentController implements BasicGetController<Payment> {
     Payment create(@RequestParam int buyerId,
                    @RequestParam int productId,
                    @RequestParam int productCount,
-                   @RequestParam String ShipmentDuration,
-                   @RequestParam String shipmentPlan) {
+                   @RequestParam String shipmentAddress,
+                   @RequestParam byte shipmentPlan) {
+
+        for(Account account : accountTable) {
+
+            if(buyerId == account.id) {
+                for(Product product : productTable) {
+
+                    if(productId == product.id) {
+
+                        double productPrice = Payment.getTotalPay(product);
+                        if(account.balance >= productPrice * productCount) {
+
+                            account.balance -= productPrice * productCount;
+                            for(Payment payment : paymentTable) {
+
+                                if(buyerId == payment.buyerId) {
+
+                                    Payment.Record newRecord = new Payment.Record(WAITING_CONFIRMATION, "waiting");
+                                    payment.history.add(newRecord);
+                                    payment.shipment = new Shipment(shipmentAddress, 0, shipmentPlan, null);
+
+                                    getJsonTable().add(payment);
+                                    poolThread.add(payment);
+
+                                    return payment;
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         return null;
 
@@ -62,6 +121,19 @@ public class PaymentController implements BasicGetController<Payment> {
     @PostMapping("/{id}/submit")
     boolean submit(@RequestParam int id,
                    @RequestParam String receipt) {
+
+        for(Payment payment : paymentTable) {
+
+            if(id == payment.id) {
+                if(payment.history.get(payment.history.size() - 1).status == ON_PROGRESS && !receipt.isBlank()) {
+
+                    Payment.Record newRecord = new Payment.Record(ON_DELIVERY, "on delivery");
+                    payment.history.add(newRecord);
+                    return true;
+
+                }
+            }
+        }
 
         return false;
 
