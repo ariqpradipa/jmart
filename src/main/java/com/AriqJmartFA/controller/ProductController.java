@@ -1,12 +1,14 @@
 package com.AriqJmartFA.controller;
 
-import com.AriqJmartFA.Product;
-import com.AriqJmartFA.ProductCategory;
+import com.AriqJmartFA.*;
 import com.AriqJmartFA.dbjson.JsonAutowired;
 import com.AriqJmartFA.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.AriqJmartFA.controller.AccountController.accountTable;
 
 @RestController
 @RequestMapping("/product")
@@ -25,8 +27,21 @@ public class ProductController implements BasicGetController {
                    @RequestParam ProductCategory category,
                    @RequestParam byte shipmentPlan) {
 
-        return null;
+        for(Account account : accountTable) {
 
+            if(accountId == account.id) {
+                if(account.store != null) {
+
+                    Product product = new Product(accountId, name, weight, conditionUsed, price, discount, category, shipmentPlan);
+
+                    getJsonTable().add(product);
+                    return product;
+
+                }
+            }
+        }
+
+        return null;
 
     }
 
@@ -41,9 +56,30 @@ public class ProductController implements BasicGetController {
                                     @RequestParam int page,
                                     @RequestParam int pageSize) {
 
+        List<Product> result = new ArrayList<Product>();
+        int currIdx = page > 1 ? (page-1)*pageSize : 0;
+
+        for(int i = 0; i < pageSize && i < getJsonTable().size() - currIdx; i++) {
+            if(getJsonTable().get(i).toString().contains(Integer.toString(id))) {
+
+                result.add(getJsonTable().get(i));
+
+            }
+        }
+
+        return result;
+
+        /*
+        for(Product product : getJsonTable()) {
+            if(product.accountId == id) {
+
+                return Algorithm.paginate(getJsonTable(), page, pageSize, object -> true);
+
+            }
+        }
+
         return null;
-
-
+        */
 
     }
 
@@ -56,9 +92,32 @@ public class ProductController implements BasicGetController {
                                      @RequestParam int maxPrice,
                                      @RequestParam ProductCategory category) {
 
-        return null;
+        List<Product> result = new ArrayList<Product>();
+        int currIdx = page > 1 ? (page-1)*pageSize : 0;
+
+        for(int i = 0; i < pageSize && i < getJsonTable().size() - currIdx; i++) {
+
+            if(getJsonTable().get(i).toString().toLowerCase().contains(search.toLowerCase()) ||
+                    getJsonTable().get(i).toString().contains(Integer.toString(accountId)) ||
+                    ((minPrice > 0 && getJsonTable().get(i).price >= minPrice) && (maxPrice > minPrice && getJsonTable().get(i).price <= maxPrice))) {
+
+                result.add(getJsonTable().get(i));
+
+            }
+        }
+
+        List<Product> filteredCategory = Algorithm.<Product>collect(getJsonTable(), prod -> prod.category == category);
+
+        for(Product e : filteredCategory) {
+
+            if(!result.contains(e)) {
+
+                result.add(e);
+
+            }
+        }
+
+        return result;
 
     }
-
-
 }

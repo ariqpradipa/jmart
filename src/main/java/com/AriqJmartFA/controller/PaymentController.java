@@ -105,7 +105,7 @@ public class PaymentController implements BasicGetController<Payment> {
 
     }
 
-    public JsonTable getJsonTable() {
+    public JsonTable<Payment> getJsonTable() {
 
         return paymentTable;
 
