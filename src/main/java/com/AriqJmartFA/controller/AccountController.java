@@ -11,9 +11,11 @@ import com.AriqJmartFA.Account;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.io.File;
 
 @RestController
 @RequestMapping("/account")
@@ -24,7 +26,9 @@ public class AccountController implements BasicGetController<Account> {
     public static final Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
 
-    @JsonAutowired(filepath = "/json/Account.json", value = Account.class)
+
+
+    @JsonAutowired(filepath = "src/main/resources/json/Account.json", value = Account.class)
     public static JsonTable<Account> accountTable;
 
     public JsonTable<Account> getJsonTable() {
@@ -37,7 +41,7 @@ public class AccountController implements BasicGetController<Account> {
     Account login(@RequestParam String email, String password) throws NoSuchAlgorithmException {
 
         for(Account account : getJsonTable()) {
-            if(account.email == email && account.password == md5Hashing(password)) {
+            if(Objects.equals(account.email, email) && Objects.equals(account.password, md5Hashing(password))) {
 
                 return account;
 
@@ -73,7 +77,7 @@ public class AccountController implements BasicGetController<Account> {
 
         }
         for(Account account : accountTable) {
-            if(account.email == email) {
+            if(Objects.equals(account.email, email)) {
                 return null;
             }
         }
