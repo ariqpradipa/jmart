@@ -22,7 +22,7 @@ public class PaymentController implements BasicGetController<Payment> {
     public static final long ON_PROGRESS_LIMIT_MS = 4;
     public static final long WAITING_CONF_LIMIT_MS = 5;
 
-    @JsonAutowired(filepath = "/json/Payment.json", value = Payment.class)
+    @JsonAutowired(filepath = "src/main/resources/json/Payment.json", value = Payment.class)
     public static JsonTable<Payment> paymentTable;
 
 

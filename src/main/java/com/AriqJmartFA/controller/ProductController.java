@@ -14,7 +14,7 @@ import static com.AriqJmartFA.controller.AccountController.accountTable;
 @RequestMapping("/product")
 public class ProductController implements BasicGetController {
 
-    @JsonAutowired(filepath = "/json/Product.json", value = Product.class)
+    @JsonAutowired(filepath = "src/main/resources/json/Product.json", value = Product.class)
     public static JsonTable<Product> productTable;
 
     @PostMapping(value = "/create")
