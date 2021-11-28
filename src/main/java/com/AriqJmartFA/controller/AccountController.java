@@ -28,7 +28,7 @@ public class AccountController implements BasicGetController<Account> {
 
 
 
-    @JsonAutowired(filepath = "src/main/resources/json/Account.json", value = Account.class)
+    @JsonAutowired(filepath = "json/Account.json", value = Account.class)
     public static JsonTable<Account> accountTable;
 
     public JsonTable<Account> getJsonTable() {
