@@ -33,7 +33,7 @@ public class ProductController implements BasicGetController {
             if(accountId == account.id) {
                 if(account.store != null) {
                     for(Product prod : productTable) {
-                        if(prod.name.equals(name)) {
+                        if(prod.accountId == accountId && prod.name.equalsIgnoreCase(name)) {
 
                              return null;
 
@@ -65,24 +65,36 @@ public class ProductController implements BasicGetController {
                                     @RequestParam(defaultValue = "5") int pageSize) {
 
         List<Product> result = new ArrayList<Product>();
-        int currIdx = page > 1 ? (page-1)*pageSize : 0;
+        // int currIdx = page > 1 ? (page-1)*pageSize : 0;
+        int i = 0, j = 0;
+        int intercept = 0;
 
-        for(Product prod : productTable) {
-            if(prod.id == currIdx) {
-                for(int i = currIdx; (i - currIdx) < pageSize && i < getJsonTable().size(); i++) {
-                    if (getJsonTable().get(i).accountId == id) {
+        while(i < getJsonTable().size() && j < pageSize) {
+            if (getJsonTable().get(i).accountId == id) {
+                if (page > 1 && intercept < pageSize * (page - 1)) {
 
-                        result.add(getJsonTable().get(i));
+                    intercept++;
+                    i++;
 
-                    }
+                    continue;
+
                 }
+                if (getJsonTable().get(i).accountId == id) {
 
-                return result;
+                    result.add(getJsonTable().get(i));
+                    j++;
+                    i++;
+                    continue;
 
+                }
             }
+
+            i++;
+
         }
 
-        return null;
+        return result;
+
     }
 
     @GetMapping(value = "/getFiltered")
