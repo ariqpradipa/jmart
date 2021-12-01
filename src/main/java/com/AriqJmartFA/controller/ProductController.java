@@ -31,6 +31,13 @@ public class ProductController implements BasicGetController {
 
             if(accountId == account.id) {
                 if(account.store != null) {
+                    for(Product prod : productTable) {
+                        if(prod.name.equals(name)) {
+
+                             return null;
+
+                        }
+                    }
 
                     Product product = new Product(accountId, name, weight, conditionUsed, price, discount, category, shipmentPlan);
 
@@ -53,34 +60,28 @@ public class ProductController implements BasicGetController {
 
     @GetMapping(value ="/{id}/store")
     List<Product> getProductByStore(@RequestParam int id,
-                                    @RequestParam int page,
-                                    @RequestParam int pageSize) {
+                                    @RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(defaultValue = "5") int pageSize) {
 
         List<Product> result = new ArrayList<Product>();
         int currIdx = page > 1 ? (page-1)*pageSize : 0;
 
-        for(int i = 0; i < pageSize && i < getJsonTable().size() - currIdx; i++) {
-            if(getJsonTable().get(i).toString().contains(Integer.toString(id))) {
+        for(Product prod : productTable) {
+            if(prod.id == currIdx) {
+                for(int i = currIdx; (i - currIdx) < pageSize && i < getJsonTable().size(); i++) {
+                    if (getJsonTable().get(i).accountId == id) {
 
-                result.add(getJsonTable().get(i));
+                        result.add(getJsonTable().get(i));
 
-            }
-        }
+                    }
+                }
 
-        return result;
-
-        /*
-        for(Product product : getJsonTable()) {
-            if(product.accountId == id) {
-
-                return Algorithm.paginate(getJsonTable(), page, pageSize, object -> true);
+                return result;
 
             }
         }
 
         return null;
-        */
-
     }
 
     @GetMapping(value = "/getFiltered")
