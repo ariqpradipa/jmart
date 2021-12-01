@@ -79,14 +79,13 @@ public class ProductController implements BasicGetController {
                     continue;
 
                 }
-                if (getJsonTable().get(i).accountId == id) {
 
-                    result.add(getJsonTable().get(i));
-                    j++;
-                    i++;
-                    continue;
+                result.add(getJsonTable().get(i));
+                j++;
+                i++;
 
-                }
+                continue;
+
             }
 
             i++;
@@ -108,29 +107,37 @@ public class ProductController implements BasicGetController {
 
         List<Product> result = new ArrayList<Product>();
         int currIdx = page > 1 ? (page - 1) * pageSize : 0;
+        int i = 0, j = 0;
+        int intercept = 0;
 
-        for (Product prod : productTable) {
-            if (prod.id == currIdx) {
-                for (int i = currIdx; (i - currIdx) < pageSize && i < getJsonTable().size(); i++) {
-                    if (getJsonTable().get(i).accountId == accountId) {
-                        if ((getJsonTable().get(i).name).equalsIgnoreCase(search)) {
-                            if (getJsonTable().get(i).price > minPrice && getJsonTable().get(i).price < maxPrice) {
-                                if (getJsonTable().get(i).category.equals(category)) {
+        while(i < getJsonTable().size() && j < pageSize) {
+            if (getJsonTable().get(i).accountId == accountId) {
+                if ((getJsonTable().get(i).name).equalsIgnoreCase(search)) {
+                    if (getJsonTable().get(i).price > minPrice && getJsonTable().get(i).price < maxPrice) {
+                        if (getJsonTable().get(i).category.equals(category)) {
+                            if (page > 1 && intercept < pageSize * (page - 1)) {
 
-                                    result.add(getJsonTable().get(i));
-
-                                }
+                                intercept++;
+                                i++;
+                                continue;
                             }
+
+                            result.add(getJsonTable().get(i));
+                            j++;
+                            i++;
+
+                            continue;
+
                         }
                     }
                 }
-
-                return result;
-
             }
+
+            i++;
+
         }
 
-        return null;
+        return result;
 
     }
 }
