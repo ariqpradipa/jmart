@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static com.AriqJmartFA.controller.AccountController.accountTable;
 
@@ -85,8 +86,8 @@ public class ProductController implements BasicGetController {
     }
 
     @GetMapping(value = "/getFiltered")
-    List<Product> getProductFiltered(@RequestParam int page,
-                                     @RequestParam int pageSize,
+    List<Product> getProductFiltered(@RequestParam(defaultValue = "1") int page,
+                                     @RequestParam(defaultValue = "5") int pageSize,
                                      @RequestParam int accountId,
                                      @RequestParam String search,
                                      @RequestParam int minPrice,
@@ -94,31 +95,30 @@ public class ProductController implements BasicGetController {
                                      @RequestParam ProductCategory category) {
 
         List<Product> result = new ArrayList<Product>();
-        int currIdx = page > 1 ? (page-1)*pageSize : 0;
+        int currIdx = page > 1 ? (page - 1) * pageSize : 0;
 
-        for(int i = 0; i < pageSize && i < getJsonTable().size() - currIdx; i++) {
+        for (Product prod : productTable) {
+            if (prod.id == currIdx) {
+                for (int i = currIdx; (i - currIdx) < pageSize && i < getJsonTable().size(); i++) {
+                    if (getJsonTable().get(i).accountId == accountId) {
+                        if ((getJsonTable().get(i).name).equalsIgnoreCase(search)) {
+                            if (getJsonTable().get(i).price > minPrice && getJsonTable().get(i).price < maxPrice) {
+                                if (getJsonTable().get(i).category.equals(category)) {
 
-            if(getJsonTable().get(i).toString().toLowerCase().contains(search.toLowerCase()) ||
-                    getJsonTable().get(i).toString().contains(Integer.toString(accountId)) ||
-                    ((minPrice > 0 && getJsonTable().get(i).price >= minPrice) && (maxPrice > minPrice && getJsonTable().get(i).price <= maxPrice))) {
+                                    result.add(getJsonTable().get(i));
 
-                result.add(getJsonTable().get(i));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return result;
 
             }
         }
 
-        List<Product> filteredCategory = Algorithm.<Product>collect(getJsonTable(), prod -> prod.category == category);
-
-        for(Product e : filteredCategory) {
-
-            if(!result.contains(e)) {
-
-                result.add(e);
-
-            }
-        }
-
-        return result;
+        return null;
 
     }
 }
