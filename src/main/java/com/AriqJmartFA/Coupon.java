@@ -4,11 +4,11 @@ import com.AriqJmartFA.dbjson.Serializable;
 
 public class Coupon extends Serializable {
 
+    public final String name;
     public final int code;
+    public final Type type;
     public final double cut;
     public final double minimum;
-    public final String name;
-    public final Type type;
     private boolean used;
     
     public Coupon(String name, int code, Type type, double cut, double minimum) {

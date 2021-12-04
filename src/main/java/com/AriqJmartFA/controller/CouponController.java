@@ -10,13 +10,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
+@RestController
+@RequestMapping("/coupon")
 public class CouponController implements BasicGetController<Coupon> {
 
-    @JsonAutowired(filepath = "/json/Coupon.json", value = Coupon.class)
+    @JsonAutowired(filepath = "json/Coupon.json", value = Coupon.class)
     public static JsonTable<Coupon> couponTable;
 
-    @GetMapping(value ="{id}/canApply")
+    @PostMapping("/create")
+    Coupon create(@RequestParam String name,
+                  @RequestParam int code,
+                  @RequestParam Coupon.Type type,
+                  @RequestParam double cut,
+                  @RequestParam double minimum) {
+
+        for(Coupon coupon : couponTable) {
+            if(coupon.code != code) {
+                if(!Objects.equals(coupon.name, name)) {
+
+                    Coupon newCoupon = new Coupon(name, code, type, cut, minimum);
+                    getJsonTable().add(newCoupon);
+                    return newCoupon;
+
+                }
+            }
+        }
+
+        return null;
+
+    }
+
+    @GetMapping(value ="/{id}/canApply")
     boolean canApply(@RequestParam int id,
                      @RequestParam double price,
                      @RequestParam double discount) {
