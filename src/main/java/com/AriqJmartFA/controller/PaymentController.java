@@ -67,7 +67,7 @@ public class PaymentController implements BasicGetController<Payment> {
     }
 
     @PostMapping("/{id}/accept")
-    boolean accept(@RequestParam int id) {
+    boolean accept(@PathVariable int id) {
 
         for(Payment payment : paymentTable) {
 
@@ -87,7 +87,7 @@ public class PaymentController implements BasicGetController<Payment> {
     }
 
     @PostMapping("/{id}/cancel")
-    boolean cancel(@RequestParam int id) {
+    boolean cancel(@PathVariable int id) {
 
         for(Payment payment : paymentTable) {
 
@@ -118,7 +118,7 @@ public class PaymentController implements BasicGetController<Payment> {
     }
 
     @PostMapping("/{id}/submit")
-    boolean submit(@RequestParam int id,
+    boolean submit(@PathVariable int id,
                    @RequestParam String receipt) {
 
         for(Payment payment : paymentTable) {

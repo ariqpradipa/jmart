@@ -60,7 +60,7 @@ public class ProductController implements BasicGetController {
     }
 
     @GetMapping(value ="/{id}/store")
-    List<Product> getProductByStore(@RequestParam int id,
+    List<Product> getProductByStore(@PathVariable int id,
                                     @RequestParam(defaultValue = "1") int page,
                                     @RequestParam(defaultValue = "5") int pageSize) {
 

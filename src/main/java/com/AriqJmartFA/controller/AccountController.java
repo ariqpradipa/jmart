@@ -108,7 +108,7 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/{id}/registerStore")
-    Store registerStore(@RequestParam int id,
+    Store registerStore(@PathVariable int id,
                         @RequestParam String name,
                         @RequestParam String address,
                         @RequestParam String phoneNumber) {
@@ -128,7 +128,7 @@ public class AccountController implements BasicGetController<Account> {
     }
 
     @PostMapping("/{id}/topUp")
-    boolean topUp(@RequestParam int id,
+    boolean topUp(@PathVariable int id,
                   @RequestParam double balance) {
 
         for(Account account : accountTable) {

@@ -43,7 +43,7 @@ public class CouponController implements BasicGetController<Coupon> {
     }
 
     @GetMapping(value ="/{id}/canApply")
-    boolean canApply(@RequestParam int id,
+    boolean canApply(@PathVariable int id,
                      @RequestParam double price,
                      @RequestParam double discount) {
 
@@ -74,7 +74,7 @@ public class CouponController implements BasicGetController<Coupon> {
     }
 
     @GetMapping(value = "/{id}/isUsed")
-    boolean isUsed(@RequestParam int id) {
+    boolean isUsed(@PathVariable int id) {
 
         for(Coupon coupon : couponTable) {
 

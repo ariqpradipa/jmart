@@ -10,7 +10,7 @@ import java.util.List;
 public interface BasicGetController<T extends Serializable> {
 
     @GetMapping("/{id}")
-    public default T getById(@RequestParam int id) {
+    public default T getById(@PathVariable int id) {
 
         for(T object : getJsonTable()) {
 
