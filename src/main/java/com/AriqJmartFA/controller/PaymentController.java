@@ -3,10 +3,7 @@ package com.AriqJmartFA.controller;
 import com.AriqJmartFA.*;
 import com.AriqJmartFA.dbjson.JsonAutowired;
 import com.AriqJmartFA.dbjson.JsonTable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -25,47 +22,11 @@ public class PaymentController implements BasicGetController<Payment> {
     @JsonAutowired(filepath = "json/Payment.json", value = Payment.class)
     public static JsonTable<Payment> paymentTable;
 
-
     static ObjectPoolThread<Payment> poolThread = new ObjectPoolThread<Payment>("Thread-pp", PaymentController::timekeeper);
 
+    public JsonTable<Payment> getJsonTable() {
 
-    @PostMapping("/{id}/accept")
-    boolean accept(@RequestParam int id) {
-
-        for(Payment payment : paymentTable) {
-
-            if(id == payment.id) {
-                if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
-
-                    Payment.Record newRecord = new Payment.Record(ON_PROGRESS, "on progress");
-                    payment.history.add(newRecord);
-                    return true;
-
-                }
-            }
-        }
-
-        return false;
-
-    }
-
-    @PostMapping("/{id}/cancel")
-    boolean cancel(@RequestParam int id) {
-
-        for(Payment payment : paymentTable) {
-
-            if(id == payment.id) {
-                if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
-
-                    Payment.Record newRecord = new Payment.Record(CANCELLED, "cancelled");
-                    payment.history.add(newRecord);
-                    return true;
-
-                }
-            }
-        }
-
-        return false;
+        return paymentTable;
 
     }
 
@@ -105,9 +66,54 @@ public class PaymentController implements BasicGetController<Payment> {
 
     }
 
-    public JsonTable<Payment> getJsonTable() {
+    @PostMapping("/{id}/accept")
+    boolean accept(@RequestParam int id) {
 
-        return paymentTable;
+        for(Payment payment : paymentTable) {
+
+            if(id == payment.id) {
+                if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
+
+                    Payment.Record newRecord = new Payment.Record(ON_PROGRESS, "on progress");
+                    payment.history.add(newRecord);
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
+
+    }
+
+    @PostMapping("/{id}/cancel")
+    boolean cancel(@RequestParam int id) {
+
+        for(Payment payment : paymentTable) {
+
+            if(id == payment.id) {
+                if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
+                    for(Account account : accountTable) {
+                        if(payment.buyerId == account.id) {
+                            for(Product prod : productTable) {
+                                if(prod.id == payment.productId) {
+
+                                    account.balance += prod.price * payment.productCount;
+
+                                }
+                            }
+                        }
+                    }
+
+                    Payment.Record newRecord = new Payment.Record(CANCELLED, "cancelled");
+                    payment.history.add(newRecord);
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
 
     }
 
