@@ -9,7 +9,12 @@ public class Complaint extends Serializable {
 
     Date date;
     public String desc;
-    
+
+    /**
+     * complaint the product that user buy
+     *
+     * @param desc complaint description
+     */
     public Complaint(String desc) {
 
         this.date = new Date();
@@ -17,6 +22,11 @@ public class Complaint extends Serializable {
 
     }
 
+    /**
+     * convert Complaint object to String
+     *
+     * @return date complaint and complaint description
+     */
     public String toString() {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
