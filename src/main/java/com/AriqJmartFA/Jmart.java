@@ -28,6 +28,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 public class Jmart {
 
+    /**
+     * Main methods of Jmart
+     *
+     * @param args data
+     */
     public static void main(String[] args) {
 
         JsonDBEngine.Run(Jmart.class);
