@@ -5,10 +5,21 @@ import java.io.*;
 
 public class Algorithm {
 
+    /**
+     * call Algorithm
+     * Algorithm used to calculate, sort, etc data
+     */
     private Algorithm() {
 
     }
 
+    /**
+     *
+     * @param array array collection.
+     * @param value the value.
+     * @param <T>
+     * @return the list of the array after equals value.
+     */
     public static <T> List<T> collect(T[] array, T value) {
 
         List<T> list = new ArrayList<T>();
@@ -25,6 +36,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable iterable collection.
+     * @param value value to compare.
+     * @param <T>
+     * @return list of iterable that contains value.
+     */
     public static <T>  List<T> collect(Iterable<T> iterable, T value) {
 
         List<T> list = new ArrayList<T>();
@@ -41,6 +59,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator iterator collection.
+     * @param value value to compare to.
+     * @param <T>
+     * @return list of iterator that contains value.
+     */
     public static <T> List<T> collect(Iterator<T> iterator, T value) {
 
         List<T> list = new ArrayList<T>();
@@ -58,6 +83,14 @@ public class Algorithm {
 
     }
 
+
+    /**
+     *
+     * @param array array of collection.
+     * @param pred predicate to compare to.
+     * @param <T>
+     * @return list of array that fulfill predicate.
+     */
     public static <T> List<T> collect(T[] array, Predicate<T> pred) {
 
         List<T> list = new ArrayList<T>();
@@ -74,6 +107,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable iterable of collect
+     * @param pred predicate of collect
+     * @param <T>
+     * @return list of collect after be predicate
+     */
     public static <T> List<T> collect(Iterable<T> iterable, Predicate<T> pred) {
 
         List<T> list = new ArrayList<T>();
@@ -90,6 +130,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> List<T> collect(Iterator<T> iterator, Predicate<T> pred) {
 
         List<T> list = new ArrayList<T>();
@@ -107,7 +154,13 @@ public class Algorithm {
 
     }
 
-
+    /**
+     *
+     * @param array count array.
+     * @param value value to compare to.
+     * @param <T>
+     * @return  count.
+     */
     public static <T> int count(T[] array, T value) {
 
         Iterator<T> iterator = Arrays.stream(array).iterator();
@@ -116,6 +169,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> int count(Iterable<T> iterable, T value) {
 
         Predicate<T> pred = value::equals;
@@ -123,6 +183,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> int count(Iterator<T> iterator, T value) {
 
         Predicate<T> pred = value::equals;
@@ -130,6 +197,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param array
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> int count(T[] array, Predicate<T> pred) {
 
         Iterator<T> iterator = Arrays.stream(array).iterator();
@@ -137,6 +211,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> int count(Iterable<T> iterable, Predicate<T> pred) {
 
         Iterator <T> iterator = iterable.iterator();
@@ -144,6 +225,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> int count(Iterator<T> iterator, Predicate<T> pred) {
 
         int out = 0;
@@ -158,6 +246,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param array
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> boolean exists(T[] array, T value) {
 
         Iterator<T> iterator = Arrays.stream(array).iterator();
@@ -166,6 +261,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> boolean exists(Iterable<T> iterable, T value) {
 
         Predicate<T> pred = value::equals;
@@ -173,6 +275,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> boolean exists(Iterator<T> iterator, T value) {
 
         Predicate<T> pred = value::equals;
@@ -180,6 +289,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param array
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> boolean exists(T[] array, Predicate<T> pred) {
 
         Iterator<T> iterator = Arrays.stream(array).iterator();
@@ -187,6 +303,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> boolean exists(Iterable<T> iterable, Predicate<T> pred) {
 
         return exists(iterable.iterator(), pred);
@@ -208,7 +331,13 @@ public class Algorithm {
 
     }
 
-
+    /**
+     *
+     * @param array
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> T find(T[] array, T value) {
 
         Iterator<T> iterator = Arrays.stream(array).iterator();
@@ -217,6 +346,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> T find(Iterable<T> iterable, T value) {
 
         Predicate<T> pred = value::equals;
@@ -224,6 +360,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param value
+     * @param <T>
+     * @return
+     */
     public static <T> T find(Iterator<T> iterator, T value) {
 
         Predicate<T> pred = value::equals;
@@ -231,6 +374,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param array
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> T find(T[] array, Predicate<T> pred) {
 
         Iterator<T> iterator = Arrays.stream(array).iterator();
@@ -238,12 +388,26 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> T find(Iterable<T> iterable, Predicate<T> pred) {
 
         return find(iterable.iterator(), pred);
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> T find(Iterator<T> iterator, Predicate<T> pred) {
 
         while(iterator.hasNext()) {
@@ -261,6 +425,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param first
+     * @param second
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(T first, T second) {
 
         if(first.compareTo(second) < 0) {
@@ -275,6 +446,12 @@ public class Algorithm {
         }
     }
 
+    /**
+     *
+     * @param array
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(T[] array) {
 
         T max = array[0];
@@ -291,7 +468,12 @@ public class Algorithm {
 
     }
 
-
+    /**
+     *
+     * @param iterable
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(Iterable<? extends T> iterable) {
 
         T max = iterable.iterator().next();
@@ -308,6 +490,12 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(Iterator<? extends T> iterator) {
 
         T next, max = iterator.next();
@@ -324,6 +512,14 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param first
+     * @param second
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(T first, T second, Comparator<? super T> comparator) {
 
         if(comparator.compare(first, second) > 0) {
@@ -338,6 +534,13 @@ public class Algorithm {
         }
     }
 
+    /**
+     *
+     * @param array
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(T[] array, Comparator<? super T> comparator) {
 
         T max = array[0];
@@ -354,6 +557,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(Iterable<T> iterable, Comparator<? super T> comparator) {
 
         T max = iterable.iterator().next();
@@ -370,6 +580,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T max(Iterator<T> iterator, Comparator<? super T> comparator) {
 
         T next, max = iterator.next();
@@ -386,6 +603,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param first
+     * @param second
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(T first, T second) {
 
         if(first.compareTo(second) < 0) {
@@ -400,6 +624,12 @@ public class Algorithm {
         }
     }
 
+    /**
+     *
+     * @param array
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(T[] array) {
 
         T min = array[0];
@@ -416,6 +646,12 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(Iterable<? extends T> iterable) {
 
         T min = iterable.iterator().next();
@@ -432,6 +668,12 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(Iterator<? extends T> iterator) {
 
         T next, min = iterator.next();
@@ -448,6 +690,14 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param first
+     * @param second
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(T first, T second, Comparator<? super T> comparator) {
 
         if(comparator.compare(first, second) < 0) {
@@ -462,6 +712,13 @@ public class Algorithm {
         }
     }
 
+    /**
+     *
+     * @param array
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(T[] array, Comparator<? super T> comparator) {
 
         T min = array[0];
@@ -478,6 +735,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(Iterable<T> iterable, Comparator<? super T> comparator) {
 
         T min = iterable.iterator().next();
@@ -494,6 +758,13 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param comparator
+     * @param <T>
+     * @return
+     */
     public static <T extends Comparable<? super T>> T min(Iterator<T> iterator, Comparator<? super T> comparator) {
 
         T next, min = iterator.next();
@@ -510,6 +781,15 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param array
+     * @param page
+     * @param pageSize
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> List paginate (T[] array, int page, int pageSize, Predicate<T> pred) {
 
         List<T> a = new ArrayList<T>();
@@ -529,6 +809,15 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterable
+     * @param page
+     * @param pageSize
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> List paginate (Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
 
         List<T> a = new ArrayList<T>();
@@ -548,6 +837,15 @@ public class Algorithm {
 
     }
 
+    /**
+     *
+     * @param iterator
+     * @param page
+     * @param pageSize
+     * @param pred
+     * @param <T>
+     * @return
+     */
     public static <T> List paginate (Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
 
         List<T> a = new ArrayList<T>();
