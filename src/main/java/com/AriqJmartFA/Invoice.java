@@ -12,6 +12,12 @@ public class Invoice extends Serializable {
     public int productId;
     public Rating rating;
 
+    /**
+     * Invoice after buyer make a payment
+     *
+     * @param buyerId the buyer ID
+     * @param productId the product ID
+     */
     protected Invoice(int buyerId, int productId) {
 
         this.buyerId = buyerId;
@@ -22,12 +28,20 @@ public class Invoice extends Serializable {
 
     }
 
+    /**
+     * total pay of product
+     *
+     * @return the total pay
+     */
     double getTotalPay() {
 
         return 0;
 
     }
 
+    /**
+     * product progress
+     */
     public static enum Status{
 
         CANCELLED, COMPLAINT, FAILED, FINISHED, ON_DELIVERY,
@@ -35,6 +49,9 @@ public class Invoice extends Serializable {
 
     }
 
+    /**
+     * for product rating
+     */
     public static enum Rating {
 
         BAD, GOOD, NEUTRAL, NONE
