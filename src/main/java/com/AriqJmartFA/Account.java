@@ -13,8 +13,15 @@ public class Account extends Serializable {
     public String name;
     public String email;
     public String password;
-    public Object store;
+    public Store store;
 
+    /**
+     *
+     * @param name the username
+     * @param email the user email
+     * @param password the user password
+     * @param balance the user balance
+     */
     public Account(String name, String email, String password, double balance) {
 
         this.name = name;
@@ -24,6 +31,10 @@ public class Account extends Serializable {
         
     }
 
+    /**
+     *
+     * @return validation of email and password to match regex
+     */
     public boolean validate() {
 
         Pattern emailPattern = Pattern.compile(REGEX_EMAIL);

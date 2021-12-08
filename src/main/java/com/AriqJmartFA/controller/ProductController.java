@@ -59,6 +59,36 @@ public class ProductController implements BasicGetController {
 
     }
 
+    @GetMapping(value ="/getProductList")
+    List<Product> getProduct(@RequestParam(defaultValue = "1") int page,
+                             @RequestParam(defaultValue = "5") int pageSize) {
+
+        List<Product> result = new ArrayList<Product>();
+        // int currIdx = page > 1 ? (page-1)*pageSize : 0;
+        int i = 0, j = 0;
+        int intercept = 0;
+
+        while(i < getJsonTable().size() && j < pageSize) {
+            if (page > 1 && intercept < pageSize * (page - 1)) {
+
+                intercept++;
+                i++;
+
+                continue;
+
+            }
+
+            result.add(getJsonTable().get(i));
+            j++;
+            i++;
+
+
+        }
+
+        return result;
+
+    }
+
     @GetMapping(value ="/{id}/store")
     List<Product> getProductByStore(@PathVariable int id,
                                     @RequestParam(defaultValue = "1") int page,
