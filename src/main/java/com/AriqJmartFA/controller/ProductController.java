@@ -40,7 +40,7 @@ public class ProductController implements BasicGetController {
                         }
                     }
 
-                    Product product = new Product(accountId, name, weight, conditionUsed, price, discount, category, shipmentPlan);
+                    Product product = new Product(accountId, name, weight, conditionUsed, price, discount, category, shipmentPlan, account.store.name);
 
                     getJsonTable().add(product);
                     return product;
