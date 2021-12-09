@@ -8,6 +8,11 @@ public class ObjectPoolThread<T> extends Thread{
     private Vector<T> objectPool = new Vector<>();
     private Function<T, Boolean> routine;
 
+    /**
+     * multi threading using object poolthread
+     * @param name
+     * @param routine
+     */
     public ObjectPoolThread(String name, Function<T, Boolean> routine) {
 
         super(name);

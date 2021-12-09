@@ -31,7 +31,7 @@ public class CouponController implements BasicGetController<Coupon> {
                 if(!Objects.equals(coupon.name, name)) {
 
                     Coupon newCoupon = new Coupon(name, code, type, cut, minimum);
-                    getJsonTable().add(newCoupon);
+                    couponTable.add(newCoupon);
                     return newCoupon;
 
                 }
@@ -50,7 +50,7 @@ public class CouponController implements BasicGetController<Coupon> {
         for(Coupon coupon : getJsonTable()) {
             if(id == coupon.id) {
 
-                return coupon.canApply(new Treasury());
+                return coupon.canApply(price, discount);
 
             }
         }
@@ -63,7 +63,7 @@ public class CouponController implements BasicGetController<Coupon> {
     List<Coupon> getAvailable(@RequestParam(defaultValue = "2") int page,
                               @RequestParam(defaultValue = "4") int pageSize) {
 
-        return Algorithm.paginate(getJsonTable(), page, pageSize, object -> false);
+        return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> !pred.isUsed());
 
     }
 

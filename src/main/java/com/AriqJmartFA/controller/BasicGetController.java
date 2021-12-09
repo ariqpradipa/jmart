@@ -1,4 +1,5 @@
 package com.AriqJmartFA.controller;
+import com.AriqJmartFA.Account;
 import com.AriqJmartFA.Algorithm;
 import org.springframework.web.bind.annotation.*;
 import com.AriqJmartFA.dbjson.Serializable;
@@ -7,6 +8,8 @@ import com.AriqJmartFA.dbjson.JsonTable;
 import java.util.ArrayList;
 import java.util.List;
 
+@RestController
+@RequestMapping(value = "/controller")
 public interface BasicGetController<T extends Serializable> {
 
     @GetMapping("/{id}")
@@ -29,9 +32,9 @@ public interface BasicGetController<T extends Serializable> {
 
     @GetMapping(value ="/page")
     public default List<T> getPage(@RequestParam(defaultValue = "1") int page,
-                                   @RequestParam(defaultValue = "5") int pageSize) {
+                                   @RequestParam(defaultValue = "9") int pageSize) {
 
-        return Algorithm.paginate(getJsonTable(), page, pageSize, object -> true);
+        return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> true);
 
     }
 }

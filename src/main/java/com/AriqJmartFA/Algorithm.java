@@ -2,6 +2,7 @@ package com.AriqJmartFA;
 
 import java.util.*;
 import java.io.*;
+import java.util.stream.Collectors;
 
 public class Algorithm {
 
@@ -792,20 +793,7 @@ public class Algorithm {
      */
     public static <T> List paginate (T[] array, int page, int pageSize, Predicate<T> pred) {
 
-        List<T> a = new ArrayList<T>();
-        List<T> b = new ArrayList<T>();
-
-        for(T c : array) if(pred.predicate(c)) a.add(c);
-
-        int x = 0;
-        for(T d : b) {
-
-            if (x >= ((page)*pageSize) && x < ((page+1)*pageSize)) b.add(d);
-            x++;
-
-        }
-
-        return b;
+        return Arrays.stream(array).filter(pred::predicate).skip(pageSize*page).limit(pageSize).collect(Collectors.toList());
 
     }
 
@@ -820,20 +808,22 @@ public class Algorithm {
      */
     public static <T> List paginate (Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
 
-        List<T> a = new ArrayList<T>();
-        List<T> b = new ArrayList<T>();
-
-        for(T c : iterable) if(pred.predicate(c)) a.add(c);
-
-        int x = 0;
-        for(T d : b) {
-
-            if (x >= ((page)*pageSize) && x < ((page+1)*pageSize)) b.add(d);
-            x++;
-
+        List<T> list = new ArrayList<T>();
+        int counter = 0, counterPrint = 0;
+        int size = pageSize * page;
+        for (T each : iterable){
+            if (counter < size && pred.predicate(each)){
+                counter++;
+                continue;
+            }
+            if (counterPrint < pageSize && pred.predicate(each)){
+                list.add(each);
+                counterPrint++;
+            }else{
+                break;
+            }
         }
-
-        return b;
+        return list;
 
     }
 
@@ -848,20 +838,26 @@ public class Algorithm {
      */
     public static <T> List paginate (Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
 
-        List<T> a = new ArrayList<T>();
-        List<T> b = new ArrayList<T>();
+        int iteration = 0;
+        int occurences = 0;
+        int startingIdx = page * pageSize;
+        List<T> pageList = new ArrayList<>(pageSize);
 
-        int x = 0;
-        while (iterator.hasNext()) {
+        List<T> array = new ArrayList<T>();
 
-            T i = iterator.next();
-            if(pred.predicate(i)) a.add(i);
-            if (x >= ((page)*pageSize) && x < ((page+1)*pageSize)) b.add(i);
-            x++;
+        iterator.forEachRemaining(array::add);
 
+        for (; iteration < array.size() && occurences < startingIdx; ++iteration) {
+            if (pred.predicate(array.get(iteration))) {
+                ++occurences;
+            }
         }
-
-        return b;
+        for (int i = 0; i < array.size() && pageList.size() < pageSize; ++i) {
+            if (pred.predicate(array.get(iteration))) {
+                pageList.add(array.get(iteration));
+            }
+        }
+        return pageList;
 
     }
 

@@ -61,7 +61,7 @@ public class ProductController implements BasicGetController {
 
     @GetMapping(value ="/getProductList")
     List<Product> getProduct(@RequestParam(defaultValue = "1") int page,
-                             @RequestParam(defaultValue = "5") int pageSize) {
+                             @RequestParam(defaultValue = "9") int pageSize) {
 
         List<Product> result = new ArrayList<Product>();
         // int currIdx = page > 1 ? (page-1)*pageSize : 0;
@@ -92,7 +92,7 @@ public class ProductController implements BasicGetController {
     @GetMapping(value ="/{id}/store")
     List<Product> getProductByStore(@PathVariable int id,
                                     @RequestParam(defaultValue = "1") int page,
-                                    @RequestParam(defaultValue = "5") int pageSize) {
+                                    @RequestParam(defaultValue = "9") int pageSize) {
 
         List<Product> result = new ArrayList<Product>();
         // int currIdx = page > 1 ? (page-1)*pageSize : 0;
@@ -126,9 +126,24 @@ public class ProductController implements BasicGetController {
 
     }
 
+    @GetMapping(value="/getMaxPage")
+    int getMaxPage(@RequestParam(defaultValue = "9") int pageSize) {
+
+        int count = 0;
+        for(Product prod : getJsonTable()) {
+            count++;
+        }
+
+        count = count/pageSize;
+        if(count%pageSize != 0) {
+            count += 1;
+        }
+        return count;
+    }
+
     @GetMapping(value = "/getFiltered")
     List<Product> getProductFiltered(@RequestParam(defaultValue = "1") int page,
-                                     @RequestParam(defaultValue = "5") int pageSize,
+                                     @RequestParam(defaultValue = "9") int pageSize,
                                      @RequestParam int accountId,
                                      @RequestParam String search,
                                      @RequestParam int minPrice,

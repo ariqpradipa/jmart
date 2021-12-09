@@ -33,32 +33,45 @@ public class Coupon extends Serializable {
 
     /**
      *
-     * @param priceTag pricetag value
+     *
      * @return cut of product price after coupon applied
      */
-    public double apply(Treasury priceTag) {
+    public double apply(double price, double discount) {
 
         this.used = true;
+        double adjustedPrice = Treasury.getAdjustedPrice(price, discount);
 
-        if(this.type == Type.DISCOUNT) {
+        switch(type) {
+            case DISCOUNT: {
+                if(cut >= 100.0) {
+                    return 0.0;
+                }
 
-            return priceTag.getAdjustedPrice(this.minimum, this.cut) - (priceTag.getAdjustedPrice(this.minimum, this.cut) * (cut/100)); // skala discount 1-100
+                return adjustedPrice - adjustedPrice*(cut/100);
+            }
+            case REBATE: {
 
-        } else {
+                if(adjustedPrice <= cut) {
 
-            return priceTag.getAdjustedPrice(this.minimum, this.cut) - cut;
+                    return 0;
+                }
 
+                return adjustedPrice - cut;
+
+            }
         }
+
+        return 0.0;
     }
 
     /**
      *
-     * @param priceTag pricetag value
+     * @param
      * @return boolean after product price meets coupon minimum
      */
-    public boolean canApply(Treasury priceTag) {
+    public boolean canApply(double price, double discount) {
 
-        return (priceTag.getAdjustedPrice(this.minimum, this.cut) >= this.minimum && !this.used);
+        return !used && !(Treasury.getAdjustedPrice(price, discount) < minimum);
     }
 
     /**
