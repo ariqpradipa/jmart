@@ -1,5 +1,8 @@
 package com.AriqJmartFA;
 
+/**
+ * Product category list
+ */
 public enum ProductCategory {
 
     ART_CRAFT,
