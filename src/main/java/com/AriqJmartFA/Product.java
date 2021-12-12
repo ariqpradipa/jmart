@@ -2,6 +2,9 @@ package com.AriqJmartFA;
 
 import com.AriqJmartFA.dbjson.Serializable;
 
+/**
+ * Product Object
+ */
 public class Product extends Serializable {
 
     public int accountId;
@@ -14,6 +17,19 @@ public class Product extends Serializable {
     public int weight;
     public String storeName;
 
+    /**
+     * Create new product object
+     *
+     * @param accountId seller account id
+     * @param name product name
+     * @param weight product weight in gram
+     * @param conditionUsed new or used
+     * @param price product price
+     * @param discount product discount
+     * @param category product category
+     * @param shipmentPlan product shipment plan
+     * @param storeName store name that sell product
+     */
     public Product(int accountId, String name, int weight, boolean conditionUsed, double price, double discount, ProductCategory category, byte shipmentPlan, String storeName) {
 
         this.accountId = accountId;
@@ -28,6 +44,11 @@ public class Product extends Serializable {
         
     }
 
+    /**
+     * Show list of created product to string
+     *
+     * @return product object to string
+     */
     public String toString() {
 
         String accID = "Account ID: " + this.accountId;
