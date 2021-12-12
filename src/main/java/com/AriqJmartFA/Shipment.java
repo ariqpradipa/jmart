@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
+/**
+ * Shipment plan
+ */
 public class Shipment {
 
     public static final SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("E MMMM dd yyyy");
@@ -17,6 +20,14 @@ public class Shipment {
     public byte plan;
     public String receipt;
 
+    /**
+     * Shipment object
+     *
+     * @param address sent address
+     * @param cost shipment cost
+     * @param plan shipment plan
+     * @param receipt shipment receipt
+     */
     public Shipment(String address, int cost, byte plan, String receipt) {
 
         this.address = address;
@@ -26,6 +37,12 @@ public class Shipment {
 
     }
 
+    /**
+     * shipment estimated arrive time
+     *
+     * @param reference date reference
+     * @return arrive date
+     */
     public String getEstimatedArrival(Date reference) {
 
         Calendar cal = Calendar.getInstance();
@@ -65,12 +82,21 @@ public class Shipment {
         }
     }
 
+    /**
+     * Shipment duration
+     *
+     * @param reference plan reference
+     * @return boolean is duration
+     */
     public boolean isDuration(Plan reference) {
 
         return (this.plan & reference.bit) != 0;
 
     }
 
+    /**
+     * Plan class
+     */
     public static class Plan {
 
         byte bit;
@@ -78,6 +104,5 @@ public class Shipment {
         private Plan(byte bit) {
 
         }
-
     }
 }
