@@ -53,6 +53,7 @@ public class ProductController implements BasicGetController {
 
     }
 
+    @GetMapping(value = "/getAllProduct")
     public JsonTable<Product> getJsonTable() {
 
         return productTable;
@@ -130,12 +131,13 @@ public class ProductController implements BasicGetController {
     int getMaxPage(@RequestParam(defaultValue = "9") int pageSize) {
 
         int count = 0;
+        int temp =0;
         for(Product prod : getJsonTable()) {
-            count++;
+            temp++;
         }
 
-        count = count/pageSize;
-        if(count%pageSize != 0) {
+        count = temp/pageSize;
+        if(temp%pageSize != 0) {
             count += 1;
         }
         return count;
@@ -144,10 +146,10 @@ public class ProductController implements BasicGetController {
     @GetMapping(value = "/getFiltered")
     List<Product> getProductFiltered(@RequestParam(defaultValue = "1") int page,
                                      @RequestParam(defaultValue = "9") int pageSize,
-                                     @RequestParam int accountId,
+                                     @RequestParam(defaultValue = "false") boolean usedStatus,
                                      @RequestParam String search,
-                                     @RequestParam int minPrice,
-                                     @RequestParam int maxPrice,
+                                     @RequestParam(defaultValue = "1000") int minPrice,
+                                     @RequestParam(defaultValue = "100000") int maxPrice,
                                      @RequestParam ProductCategory category) {
 
         List<Product> result = new ArrayList<Product>();
@@ -156,8 +158,8 @@ public class ProductController implements BasicGetController {
         int intercept = 0;
 
         while(i < getJsonTable().size() && j < pageSize) {
-            if (getJsonTable().get(i).accountId == accountId) {
-                if ((getJsonTable().get(i).name).equalsIgnoreCase(search)) {
+            if((getJsonTable().get(i).conditionUsed) == usedStatus) {
+                if ((getJsonTable().get(i).name.toLowerCase()).contains(search.toLowerCase())) {
                     if (getJsonTable().get(i).price > minPrice && getJsonTable().get(i).price < maxPrice) {
                         if (getJsonTable().get(i).category.equals(category)) {
                             if (page > 1 && intercept < pageSize * (page - 1)) {
