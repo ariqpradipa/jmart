@@ -5,7 +5,9 @@ import com.AriqJmartFA.dbjson.JsonAutowired;
 import com.AriqJmartFA.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static com.AriqJmartFA.Invoice.Status.*;
 import static com.AriqJmartFA.controller.AccountController.accountTable;
@@ -135,6 +137,22 @@ public class PaymentController implements BasicGetController<Payment> {
         }
 
         return false;
+
+    }
+
+    @GetMapping(value = "/{buyerId}/paymentHistory")
+    List<Payment> paymentHistory(@PathVariable int buyerId) {
+
+        List<Payment> result = new ArrayList<Payment>();
+        for(Payment payment : getJsonTable()) {
+            if(payment.buyerId == buyerId) {
+
+                result.add(payment);
+
+            }
+        }
+
+        return result;
 
     }
 
