@@ -4,55 +4,103 @@ import java.util.Vector;
 import java.util.function.Function;
 
 public class ObjectPoolThread<T> extends Thread{
-    private boolean exitSignal;
-    private Vector<T> objectPool = new Vector<>();
+    private boolean exitSignal = false;
+    private Vector<T> objectPool = new Vector<T>();
     private Function<T, Boolean> routine;
 
     /**
      * multi threading using object poolthread
-     * @param name
-     * @param routine
+     * @param name thread name
+     * @param routine the routine
      */
     public ObjectPoolThread(String name, Function<T, Boolean> routine) {
 
         super(name);
         this.routine = routine;
-        Thread thread = new Thread(name);
-        thread.start();
+//        Thread thread = new Thread(name);
+//        thread.start();
 
     }
 
+    /**
+     * Assign routine
+     *
+     * @param routine routine value
+     */
     public ObjectPoolThread(Function<T, Boolean> routine) {
 
-        super();
+        this.routine = routine;
 
     }
+
+    /**
+     * Synchronize add
+     *
+     * @param object object to synchronize
+     */
     public synchronized void add(T object) {
 
-        this.objectPool.add(object);
+        objectPool.add(object);
 
     }
+
+    /**
+     * exit from synchronize
+     */
     public synchronized void exit() {
 
-        currentThread().stop();
+        this.exitSignal = true;
+        //currentThread().stop();
 
     }
+
+    /**
+     * Start run the thread
+     */
     public void run() {
 
-        for(T x: objectPool) {
-            this.routine = (Function<T, Boolean>) x;
+        exitSignal = false;
+        boolean test;
+
+        synchronized (this){
+            for(T object : this.objectPool) {
+
+                test = routine.apply(object);
+                if (!test) {
+
+                    this.objectPool.add(object);
+
+                } else {
+
+                    this.objectPool.remove(object);
+
+                }
+
+                while(this.objectPool.size() == 0){
+
+                    try {
+
+                        routine.wait();
+
+                    } catch (InterruptedException e) {
+
+                        e.printStackTrace();
+
+                    }
+                }
+                if(exitSignal) {
+
+                    break;
+
+                }
+            }
         }
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-        exit();
-
     }
+
+    /**
+     *
+     * @return size of the pool
+     */
     public int size() {
 
         return objectPool.size();
