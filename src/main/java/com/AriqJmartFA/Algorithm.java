@@ -18,7 +18,6 @@ public class Algorithm {
      *
      * @param array array collection.
      * @param value the value.
-     * @param <T>
      * @return the list of the array after equals value.
      */
     public static <T> List<T> collect(T[] array, T value) {
@@ -41,7 +40,6 @@ public class Algorithm {
      *
      * @param iterable iterable collection.
      * @param value value to compare.
-     * @param <T>
      * @return list of iterable that contains value.
      */
     public static <T>  List<T> collect(Iterable<T> iterable, T value) {
@@ -64,7 +62,6 @@ public class Algorithm {
      *
      * @param iterator iterator collection.
      * @param value value to compare to.
-     * @param <T>
      * @return list of iterator that contains value.
      */
     public static <T> List<T> collect(Iterator<T> iterator, T value) {
@@ -89,7 +86,6 @@ public class Algorithm {
      *
      * @param array array of collection.
      * @param pred predicate to compare to.
-     * @param <T>
      * @return list of array that fulfill predicate.
      */
     public static <T> List<T> collect(T[] array, Predicate<T> pred) {
@@ -112,7 +108,6 @@ public class Algorithm {
      *
      * @param iterable iterable of collect
      * @param pred predicate of collect
-     * @param <T>
      * @return list of collect after be predicate
      */
     public static <T> List<T> collect(Iterable<T> iterable, Predicate<T> pred) {
@@ -133,10 +128,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterator collect iterator
+     * @param pred predicate to add to
+     * @return collection.
      */
     public static <T> List<T> collect(Iterator<T> iterator, Predicate<T> pred) {
 
@@ -159,7 +153,6 @@ public class Algorithm {
      *
      * @param array count array.
      * @param value value to compare to.
-     * @param <T>
      * @return  count.
      */
     public static <T> int count(T[] array, T value) {
@@ -172,10 +165,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param value
-     * @param <T>
-     * @return
+     * @param iterable iterable value.
+     * @param value value.
+     * @return count.
      */
     public static <T> int count(Iterable<T> iterable, T value) {
 
@@ -186,10 +178,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param value
-     * @param <T>
-     * @return
+     * @param iterator count iterator.
+     * @param value value to iterate.
+     * @return count based on iterator and value.
      */
     public static <T> int count(Iterator<T> iterator, T value) {
 
@@ -200,10 +191,9 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param pred
-     * @param <T>
-     * @return
+     * @param array count array.
+     * @param pred predicate of the array.
+     * @return count based on array and predicate.
      */
     public static <T> int count(T[] array, Predicate<T> pred) {
 
@@ -214,10 +204,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterable iterable.
+     * @param pred predicate to iterate.
+     * @return count based on iterable and predicate
      */
     public static <T> int count(Iterable<T> iterable, Predicate<T> pred) {
 
@@ -228,10 +217,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterator iterator to iterate to.
+     * @param pred predicate to iterate to.
+     * @return count based on iterator and predicate.
      */
     public static <T> int count(Iterator<T> iterator, Predicate<T> pred) {
 
@@ -249,10 +237,9 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param value
-     * @param <T>
-     * @return
+     * @param array array of data.
+     * @param value value to compare to.
+     * @return data that exists.
      */
     public static <T> boolean exists(T[] array, T value) {
 
@@ -264,10 +251,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param value
-     * @param <T>
-     * @return
+     * @param iterable iterable to iterate to.
+     * @param value value to compare to.
+     * @return exists data based on iterable and value.
      */
     public static <T> boolean exists(Iterable<T> iterable, T value) {
 
@@ -278,10 +264,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param value
-     * @param <T>
-     * @return
+     * @param iterator iterator to iterato to.
+     * @param value value to compare to.
+     * @return exists based on iterator and value.
      */
     public static <T> boolean exists(Iterator<T> iterator, T value) {
 
@@ -292,10 +277,9 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param pred
-     * @param <T>
-     * @return
+     * @param array array of exists.
+     * @param pred pred to gain from array.
+     * @return exists based on pred of array.
      */
     public static <T> boolean exists(T[] array, Predicate<T> pred) {
 
@@ -306,10 +290,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterable iterable of exists.
+     * @param pred predicate of exists.
+     * @return exists based on iterable and predicate.
      */
     public static <T> boolean exists(Iterable<T> iterable, Predicate<T> pred) {
 
@@ -317,7 +300,12 @@ public class Algorithm {
 
     }
 
-    // yang ini gimanan caranya ni belum tau
+    /**
+     *
+     * @param iterator iterator of exists.
+     * @param pred the predicate.
+     * @return exists based on iterator and predicate.
+     */
     public static <T> boolean exists(Iterator<T> iterator, Predicate<T> pred) {
 
         while(iterator.hasNext()) {
@@ -334,10 +322,9 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param value
-     * @param <T>
-     * @return
+     * @param array array of items to be find.
+     * @param value value of the items.
+     * @return foundable items.
      */
     public static <T> T find(T[] array, T value) {
 
@@ -349,10 +336,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param value
-     * @param <T>
-     * @return
+     * @param iterable find iterable.
+     * @param value value to compare to.
+     * @return foundable items.
      */
     public static <T> T find(Iterable<T> iterable, T value) {
 
@@ -363,10 +349,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param value
-     * @param <T>
-     * @return
+     * @param iterator find iterator.
+     * @param value value to compare to.
+     * @return foundable items based on iterator and value.
      */
     public static <T> T find(Iterator<T> iterator, T value) {
 
@@ -377,10 +362,9 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param pred
-     * @param <T>
-     * @return
+     * @param array array to find item within.
+     * @param pred predicate of items.
+     * @return foundable items in provided array.
      */
     public static <T> T find(T[] array, Predicate<T> pred) {
 
@@ -391,10 +375,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterable iterable of find.
+     * @param pred predicate of find.
+     * @return foundable items based on iterable and predicate.
      */
     public static <T> T find(Iterable<T> iterable, Predicate<T> pred) {
 
@@ -404,10 +387,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterator iterator to iterate to.
+     * @param pred predicate of items.
+     * @return foundable items based on predicate and iterator.
      */
     public static <T> T find(Iterator<T> iterator, Predicate<T> pred) {
 
