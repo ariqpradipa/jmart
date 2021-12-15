@@ -76,7 +76,7 @@ public class PaymentController implements BasicGetController<Payment> {
             if(id == payment.id) {
                 if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
 
-                    Payment.Record newRecord = new Payment.Record(ON_PROGRESS, "on progress");
+                    Payment.Record newRecord = new Payment.Record(ON_PROGRESS, "Seller processing item");
                     payment.history.add(newRecord);
                     return true;
 
@@ -95,19 +95,10 @@ public class PaymentController implements BasicGetController<Payment> {
 
             if(id == payment.id) {
                 if(payment.history.get(payment.history.size() - 1).status == WAITING_CONFIRMATION) {
-                    for(Account account : accountTable) {
-                        if(payment.buyerId == account.id) {
-                            for(Product prod : productTable) {
-                                if(prod.id == payment.productId) {
 
-                                    account.balance += prod.price * payment.productCount;
+                    returnBalance(payment);
 
-                                }
-                            }
-                        }
-                    }
-
-                    Payment.Record newRecord = new Payment.Record(CANCELLED, "cancelled");
+                    Payment.Record newRecord = new Payment.Record(CANCELLED, "Payment Cancelled");
                     payment.history.add(newRecord);
                     return true;
 
@@ -119,6 +110,41 @@ public class PaymentController implements BasicGetController<Payment> {
 
     }
 
+    @PostMapping("/{id}/reject")
+    boolean reject(@PathVariable int id) {
+
+        for(Payment payment : paymentTable) {
+            if(id == payment.id) {
+                if(payment.history.get(payment.history.size() - 1).status == ON_PROGRESS) {
+
+                    returnBalance(payment);
+
+                    Payment.Record newRecord = new Payment.Record(FAILED, "Store Reject Order");
+                    payment.history.add(newRecord);
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
+
+    }
+
+    private void returnBalance(Payment payment) {
+        for(Account account : accountTable) {
+            if(payment.buyerId == account.id) {
+                for(Product prod : productTable) {
+                    if(prod.id == payment.productId) {
+
+                        account.balance += prod.price * payment.productCount;
+
+                    }
+                }
+            }
+        }
+    }
+
     @PostMapping("/{id}/submit")
     boolean submit(@PathVariable int id,
                    @RequestParam String receipt) {
@@ -128,7 +154,7 @@ public class PaymentController implements BasicGetController<Payment> {
             if(id == payment.id) {
                 if(payment.history.get(payment.history.size() - 1).status == ON_PROGRESS && !receipt.isBlank()) {
 
-                    Payment.Record newRecord = new Payment.Record(ON_DELIVERY, "on delivery");
+                    Payment.Record newRecord = new Payment.Record(ON_DELIVERY, "On the way");
                     payment.history.add(newRecord);
                     return true;
 
@@ -149,6 +175,27 @@ public class PaymentController implements BasicGetController<Payment> {
 
                 result.add(payment);
 
+            }
+        }
+
+        return result;
+
+    }
+
+    @GetMapping(value = "/{storeId}/ordersHistory")
+    List<Payment> ordersHistory(@PathVariable int storeId) {
+
+        List<Payment> result = new ArrayList<Payment>();
+        for(Payment payment : getJsonTable()) {
+            for(Product prod : productTable) {
+
+                if(payment.productId == prod.id) {
+                    if(prod.accountId == storeId) {
+
+                        result.add(payment);
+
+                    }
+                }
             }
         }
 
