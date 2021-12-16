@@ -581,8 +581,8 @@ public class Algorithm {
     /**
      *
      * @param first first to compare.
-     * @param second
-     * @return
+     * @param second second to compare.
+     * @return minimum based on first and second.
      */
     public static <T extends Comparable<? super T>> T min(T first, T second) {
 
@@ -600,9 +600,8 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param <T>
-     * @return
+     * @param array aray to get min.
+     * @return min from array.
      */
     public static <T extends Comparable<? super T>> T min(T[] array) {
 
@@ -622,9 +621,8 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param <T>
-     * @return
+     * @param iterable min iterable.
+     * @return min based on iterable.
      */
     public static <T extends Comparable<? super T>> T min(Iterable<? extends T> iterable) {
 
@@ -644,9 +642,8 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param <T>
-     * @return
+     * @param iterator iterator to iterate to.
+     * @return min based on iterator.
      */
     public static <T extends Comparable<? super T>> T min(Iterator<? extends T> iterator) {
 
@@ -666,11 +663,10 @@ public class Algorithm {
 
     /**
      *
-     * @param first
-     * @param second
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param first first data to compare.
+     * @param second second data to compare.
+     * @param comparator comparator to compare to.
+     * @return min after being compare.
      */
     public static <T extends Comparable<? super T>> T min(T first, T second, Comparator<? super T> comparator) {
 
@@ -688,10 +684,9 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param array array to compare.
+     * @param comparator comparator to compare to.
+     * @return min after being compare to.
      */
     public static <T extends Comparable<? super T>> T min(T[] array, Comparator<? super T> comparator) {
 
@@ -711,10 +706,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param iterable itrable to compare min.
+     * @param comparator comparator to compare to.
+     * @return min based on iterable and comparator.
      */
     public static <T extends Comparable<? super T>> T min(Iterable<T> iterable, Comparator<? super T> comparator) {
 
@@ -734,10 +728,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param iterator iterator to compare to.
+     * @param comparator comparator to compare to.
+     * @return min based on iterator and comparator.
      */
     public static <T extends Comparable<? super T>> T min(Iterator<T> iterator, Comparator<? super T> comparator) {
 
@@ -757,12 +750,11 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param page
-     * @param pageSize
-     * @param pred
-     * @param <T>
-     * @return
+     * @param array array of data.
+     * @param page current page.
+     * @param pageSize max page size.
+     * @param pred predicate of items.
+     * @return paginate result.
      */
     public static <T> List paginate (T[] array, int page, int pageSize, Predicate<T> pred) {
 
@@ -772,12 +764,11 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param page
-     * @param pageSize
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterable iterable to iterate.
+     * @param page current page.
+     * @param pageSize max page size.
+     * @param pred predicate of items.
+     * @return paginate result.
      */
     public static <T> List paginate (Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
 
@@ -802,12 +793,11 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param page
-     * @param pageSize
-     * @param pred
-     * @param <T>
-     * @return
+     * @param iterator iterator to iterate to.
+     * @param page current page.
+     * @param pageSize max page size.
+     * @param pred predicate of items.
+     * @return paginate result.
      */
     public static <T> List paginate (Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
 
@@ -833,64 +823,6 @@ public class Algorithm {
         return pageList;
 
     }
-
-    /*
-    public static <T> List<Product> paginate(T[] array, int page, int pageSize, Predicate<Product> pred) {
-
-        List<Product> result = new ArrayList<Product>();
-        int currIdx = page > 1 ? (page-1)*pageSize : 0;
-
-        for(int i = 0; i < pageSize && i < array.length - currIdx; i++) {
-
-            if(pred.predicate((Product) array[i])) {
-
-                result.add((Product) array[i]);
-
-            }
-        }
-
-        return result;
-
-    }
-
-    public static <T> List<Product> paginate(Iterable<T> iterable, int page, int pageSize, Predicate<Product> pred) {
-
-        List<T> list = new ArrayList<T>();
-        int currIdx = page > 1 ? (page-1)*pageSize : 0;
-
-        for(T a:iterable) {
-
-            if(pred.predicate((Product) a)) {
-
-                list.add(a);
-
-            }
-        }
-
-        return (List<Product>) list;
-
-    }
-
-    public static <T> List<Product> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<Product> pred) {
-
-        List<T> list = new ArrayList<T>();
-        int currIdx = page > 1 ? (page-1)*pageSize : 0;
-
-        while(iterator.hasNext()) {
-
-            T a = iterator.next();
-            if(pred.predicate((Product) a)) {
-
-                list.add(a);
-
-            }
-        }
-
-        return (List<Product>) list;
-
-    }
-    */
-
 }
 
 
