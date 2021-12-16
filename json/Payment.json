@@ -1,1 +1,1 @@
-[]
+[{"history":[{"date":"Dec 16, 2021, 3:11:33 PM","message":"waiting","status":"WAITING_CONFIRMATION"},{"date":"Dec 16, 2021, 3:11:40 PM","message":"Seller processing item","status":"ON_PROGRESS"},{"date":"Dec 16, 2021, 3:12:13 PM","message":"Store Reject Order","status":"FAILED"}],"productCount":1,"shipment":{"address":"depok","cost":0,"plan":2},"buyerId":1,"complaintId":-1,"date":"Dec 16, 2021, 3:11:33 PM","productId":4,"rating":"NONE","id":0}]

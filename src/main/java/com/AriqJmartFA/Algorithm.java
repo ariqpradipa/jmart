@@ -410,10 +410,9 @@ public class Algorithm {
 
     /**
      *
-     * @param first
-     * @param second
-     * @param <T>
-     * @return
+     * @param first first to compare
+     * @param second second to compare
+     * @return max from the compare
      */
     public static <T extends Comparable<? super T>> T max(T first, T second) {
 
@@ -431,9 +430,8 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param <T>
-     * @return
+     * @param array array of data.
+     * @return max in array.
      */
     public static <T extends Comparable<? super T>> T max(T[] array) {
 
@@ -453,9 +451,8 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param <T>
-     * @return
+     * @param iterable iterable to max.
+     * @return max from iterable.
      */
     public static <T extends Comparable<? super T>> T max(Iterable<? extends T> iterable) {
 
@@ -475,9 +472,8 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param <T>
-     * @return
+     * @param iterator iterator to max.
+     * @return max from iterator.
      */
     public static <T extends Comparable<? super T>> T max(Iterator<? extends T> iterator) {
 
@@ -497,11 +493,10 @@ public class Algorithm {
 
     /**
      *
-     * @param first
-     * @param second
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param first first to compare to.
+     * @param second second to compare to.
+     * @param comparator comparator to compare to.
+     * @return max based on comparator
      */
     public static <T extends Comparable<? super T>> T max(T first, T second, Comparator<? super T> comparator) {
 
@@ -519,10 +514,9 @@ public class Algorithm {
 
     /**
      *
-     * @param array
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param array array of data.
+     * @param comparator comparator to comapre to.
+     * @return max from array data.
      */
     public static <T extends Comparable<? super T>> T max(T[] array, Comparator<? super T> comparator) {
 
@@ -542,10 +536,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterable
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param iterable iterable max.
+     * @param comparator comparator to compare to.
+     * @return max from iterable and comparator.
      */
     public static <T extends Comparable<? super T>> T max(Iterable<T> iterable, Comparator<? super T> comparator) {
 
@@ -565,10 +558,9 @@ public class Algorithm {
 
     /**
      *
-     * @param iterator
-     * @param comparator
-     * @param <T>
-     * @return
+     * @param iterator iterator to compare to.
+     * @param comparator comparator to compare to.
+     * @return max from iterator and comparator.
      */
     public static <T extends Comparable<? super T>> T max(Iterator<T> iterator, Comparator<? super T> comparator) {
 
@@ -588,9 +580,8 @@ public class Algorithm {
 
     /**
      *
-     * @param first
+     * @param first first to compare.
      * @param second
-     * @param <T>
      * @return
      */
     public static <T extends Comparable<? super T>> T min(T first, T second) {
